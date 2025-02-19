@@ -9,6 +9,9 @@ export default defineConfig({
     rollupOptions: {
       external: ["chart.js"], // This prevents build failure
     },
+    alias: {
+      "chart.js": "chart.js/auto"
+    }
   },
   resolve: {
     alias: {
