@@ -8,3 +8,6 @@ export const guestAtom = atom({
     infants: 0,
     pets: 0,
   });
+
+
+  export const isModalOpenAtom = atom(false);

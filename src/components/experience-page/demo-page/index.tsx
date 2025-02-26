@@ -82,7 +82,7 @@ const DemoPage = () => {
         <h1 className="text-5xl font-bold mb-4">
           Earn money leading people on activities you love.
         </h1>
-        <Link to="/get-started">
+        <Link to="/first-step-exp">
           <button className="bg-[#ffc500] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#e0b000] transition-colors">
             Let's go
           </button>
@@ -399,8 +399,8 @@ const DemoPage = () => {
 
           {/* Let's Go Button */}
           <div className="text-center pt-6">
-            <Link to="/get-started">
-              <button className="bg-[#ffc500] text-white px-8 py-2 rounded-full font-semibold hover:bg-[#e0b000] transition-colors">
+            <Link to="/first-step-exp">
+              <button  className="bg-[#ffc500] text-white px-8 py-2 rounded-full font-semibold hover:bg-[#e0b000] transition-colors">
                 Let's go
               </button>
             </Link>

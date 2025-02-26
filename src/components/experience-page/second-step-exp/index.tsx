@@ -19,6 +19,7 @@ import CancellationPolicyPage from "./CancellationPolicyPage";
 import VerifyPage from "./VerifyPage";
 import JustPage from "./JustPage";
 import ExperienceForm from "./ExperienceForm";
+import AddLocation from "./AddLocation";
 
 const SubmitExperiencePage: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -168,7 +169,7 @@ const SubmitExperiencePage: React.FC = () => {
           {currentStep === "Overview" && <WhatWereLookingFor />}
           {currentStep === "What We'll do" && <WhatweDo />}
           {currentStep === "About you" && <AboutYou />}
-          {currentStep === "Location" && <p>Experience page setup.</p>}
+          {currentStep === "Location" && <AddLocation/>}
           {currentStep === "What I'll provide" && <ProvideDetails />}
           {currentStep === "What guests should bring" && <BringItems />}
           {currentStep === "Guest requirements" && <ExperienceForm/>}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -6,26 +6,306 @@ import LookingFor from "./LookingFor";
 import Location from "./Location";
 import { SearchNormal, Setting4, Size } from "iconsax-react";
 import { useScreenSize } from "@/utilis/screenUtils";
+// import CustomModal from "./CustomModal";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { FaPlus } from "react-icons/fa6";
+import { TiMinus } from "react-icons/ti";
+import { atom, useAtom } from "jotai";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+// Jotai atom for storing the selected months
+// const selectedMonthsAtom = atom(3);
+const selectedMonthsAtom = atom(3);
+const selectedFlexibleOptionAtom = atom(null);
+const selectedMonthsFlexibleAtom = atom([]);
+
+const DatesTab = () => {
+  const today = new Date();
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+
+  const handleDateClick = (date) => {
+    const newSelectedDate = new Date(currentYear, currentMonth, date);
+    if (newSelectedDate < today) return; // Prevent selecting past dates
+
+    setSelectedDate(newSelectedDate); // Allow only one selection
+  };
+
+  const goToNextMonth = () => {
+    setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+    if (currentMonth === 11) setCurrentYear((prev) => prev + 1);
+  };
+
+  const goToPreviousMonth = () => {
+    if (currentYear > today.getFullYear() || currentMonth > today.getMonth()) {
+      setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+      if (currentMonth === 0) setCurrentYear((prev) => prev - 1);
+    }
+  };
+
+  return (
+    <div className="text-center min-h-[300px]">
+      <div className="flex justify-between items-center">
+        {/* Back Arrow - Only enabled if not at current month */}
+        <button
+          onClick={goToPreviousMonth}
+          className={`p-2 rounded-full ${
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()
+              ? "bg-gray-300 cursor-not-allowed"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
+          disabled={
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()
+          }
+        >
+          <FiArrowLeft size={24} />
+        </button>
+
+        <CalendarMonth
+          month={currentMonth}
+          year={currentYear}
+          selectedDate={selectedDate}
+          onDateClick={handleDateClick}
+        />
+
+        {/* Next Arrow */}
+        <button
+          onClick={goToNextMonth}
+          className="p-2 rounded-full bg-gray-200 hover:bg-gray-300"
+        >
+          <FiArrowRight size={24} />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// CalendarMonth: Displays a month's calendar
+const CalendarMonth = ({ month, year, selectedDate, onDateClick }) => {
+  const today = new Date();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(year, month, 1).getDay();
+
+  const days = Array.from({ length: firstDay }, () => null).concat(
+    Array.from({ length: daysInMonth }, (_, i) => i + 1)
+  );
+
+  return (
+    <div className="text-center">
+      <h3 className="text-lg font-semibold">
+        {new Date(year, month).toLocaleString("en-US", { month: "long" })}{" "}
+        {year}
+      </h3>
+      <div className="grid grid-cols-7 gap-1 text-gray-600 text-sm mt-2">
+        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
+          <div key={day} className="font-medium">
+            {day}
+          </div>
+        ))}
+        {days.map((day, index) =>
+          day ? (
+            <button
+              key={index}
+              className={`p-2 w-10 h-10 rounded-full ${
+                new Date(year, month, day) < today
+                  ? "text-gray-400 cursor-not-allowed"
+                  : selectedDate &&
+                    new Date(year, month, day).toDateString() ===
+                      selectedDate.toDateString()
+                  ? "bg-[#ffc500] text-white font-medium"
+                  : "hover:bg-gray-200"
+              }`}
+              onClick={() =>
+                new Date(year, month, day) >= today && onDateClick(day)
+              }
+              disabled={new Date(year, month, day) < today}
+            >
+              {day}
+            </button>
+          ) : (
+            <div key={index}></div>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
+
+// Placeholder components for the other tabs
+const MonthsTab = () => {
+  const [selectedMonths, setSelectedMonths] = useAtom(selectedMonthsAtom);
+
+  const handleChange = (newValue) => {
+    if (newValue >= 1 && newValue <= 12) {
+      setSelectedMonths(newValue);
+    }
+  };
+
+  return (
+    <div className="flex flex-col min-h-[300px] items-center">
+      <h2 className="text-lg font-semibold mb-4">When’s your trip?</h2>
+      <div className="relative w-40 h-40 flex items-center justify-center">
+        {/* Circular Progress */}
+        <div className="absolute w-full h-full rounded-full bg-gray-200" />
+        <div
+          className="absolute w-full h-full rounded-full"
+          style={{
+            background: `conic-gradient(#ffc500 ${
+              (selectedMonths / 12) * 360
+            }deg, #eee 0deg)`,
+          }}
+        />
+        {/* Centered Value */}
+        <div className="absolute flex flex-col items-center justify-center bg-white w-24 h-24 rounded-full shadow-md">
+          <span className="text-2xl font-bold">{selectedMonths}</span>
+          <span className="text-sm">months</span>
+        </div>
+      </div>
+      {/* Controls */}
+      <div className="flex space-x-4 mt-4">
+        <button
+          className="p-2 text-lg bg-gray-300 rounded-full disabled:opacity-50"
+          onClick={() => handleChange(selectedMonths - 1)}
+          disabled={selectedMonths <= 1}
+        >
+          <TiMinus />
+        </button>
+        <button
+          className="p-2 text-lg bg-gray-300 rounded-full disabled:opacity-50"
+          onClick={() => handleChange(selectedMonths + 1)}
+          disabled={selectedMonths >= 12}
+        >
+          <FaPlus />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const FlexibleTab = () => {
+  const [selectedOption, setSelectedOption] = useAtom(
+    selectedFlexibleOptionAtom
+  );
+  const [selectedMonths, setSelectedMonths] = useAtom(
+    selectedMonthsFlexibleAtom
+  );
+  const [startIndex, setStartIndex] = useState(0);
+
+  const options = ["Weekend", "Week", "Month"];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const selectOption = (option) => {
+    setSelectedOption(option);
+  };
+
+  const toggleMonth = (month) => {
+    setSelectedMonths((prev) =>
+      prev.includes(month)
+        ? prev.filter((item) => item !== month)
+        : [...prev, month]
+    );
+  };
+
+  const handlePrev = () => {
+    setStartIndex((prev) => (prev > 0 ? prev - 1 : 0));
+  };
+
+  const handleNext = () => {
+    setStartIndex((prev) => (prev < months.length - 5 ? prev + 1 : prev));
+  };
+
+  return (
+    <div className="text-center min-h-[300px]">
+      <h2 className="text-lg font-semibold mb-4">Stay for a week</h2>
+      <div className="flex justify-center space-x-2">
+        {options.map((option) => (
+          <button
+            key={option}
+            className={`px-4 py-2 rounded-full border ${
+              selectedOption === option ? "bg-[#ffc500] text-white" : "bg-white"
+            }`}
+            onClick={() => selectOption(option)}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+
+      <h2 className="text-lg font-semibold mt-6 mb-4">Go anytime</h2>
+      <div className="flex items-center space-x-2">
+        <button className="p-2 rounded-full bg-gray-200" onClick={handlePrev}>
+          <IoIosArrowBack size={24} />
+        </button>
+        <div className="flex space-x-4 overflow-hidden">
+          {months.slice(startIndex, startIndex + 5).map((month) => (
+            <button
+              key={month}
+              className={`p-3 w-24 rounded-lg border flex flex-col items-center ${
+                selectedMonths.includes(month)
+                  ? "bg-[#ffc500] text-white"
+                  : "bg-white"
+              }`}
+              onClick={() => toggleMonth(month)}
+            >
+              <span className="text-lg font-semibold">{month}</span>
+            </button>
+          ))}
+        </div>
+        <button className="p-2 rounded-full bg-gray-200" onClick={handleNext}>
+          <IoIosArrowForward size={24} />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const FilterContent = () => {
+  const [activeTabone, setActiveTabone] = useState("dates");
   const isMobile = useScreenSize();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Experiences");
-
+  const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const guestModalRef = useRef(null);
+  const CalenderModalRef = useRef(null);
+  const isModalOpenRef = useRef(null);
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const modalRef = useRef(null);
 
   const suggestions = [
     { name: "Nearby", desc: "Find what’s around you", icon: "📍" },
-    { name: "Islamabad, Pakistan", desc: "For sights like Faisal Mosque", icon: "🏝️" },
+    {
+      name: "Islamabad, Pakistan",
+      desc: "For sights like Faisal Mosque",
+      icon: "🏝️",
+    },
     { name: "Shimla, India", desc: "For nature-lovers", icon: "🏕️" },
-    { name: "New Delhi, India", desc: "For its stunning architecture", icon: "🏛️" },
+    {
+      name: "New Delhi, India",
+      desc: "For its stunning architecture",
+      icon: "🏛️",
+    },
     { name: "Manali, India", desc: "Great for winter getaways", icon: "❄️" },
   ];
 
@@ -42,11 +322,69 @@ const FilterContent = () => {
     setIsModalOpen(false); // Close modal after selecting
   };
 
+  const [guests, setGuests] = useState({
+    adults: 0,
+    children: 0,
+    infants: 0,
+    pets: 0,
+  });
+
+  // Click Outside Detector for Guest Modal
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        guestModalRef.current &&
+        !guestModalRef.current.contains(event.target)
+      ) {
+        setIsGuestModalOpen(false);
+      }
+    };
+    if (isGuestModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isGuestModalOpen]);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isModalOpenRef.current &&
+        !isModalOpenRef.current.contains(event.target)
+      ) {
+        setIsModalOpen(false);
+      }
+    };
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
 
 
 
+  // Update guest count
+  const updateGuestCount = (type, value) => {
+    setGuests((prev) => ({
+      ...prev,
+      [type]: Math.max(0, prev[type] + value), // Ensure non-negative values
+    }));
+  };
 
+  // Format guest summary text
+  const getGuestSummary = () => {
+    let totalGuests = guests.adults + guests.children;
+    let summary = `${totalGuests} guest${totalGuests > 1 ? "s" : ""}`;
+    if (guests.infants > 0) summary += `, ${guests.infants} infant`;
+    if (guests.pets > 0) summary += `, ${guests.pets} pet`;
+    return summary;
+  };
 
+  const [CalenderModal, setCalenderModal] = useState(false);
 
   const tabs = [
     { id: "Explore", label: "Stays" },
@@ -59,6 +397,22 @@ const FilterContent = () => {
   const handleOnChange = (value) => {
     setPrice({ min: value[0], max: value[1] });
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        CalenderModalRef.current &&
+        !CalenderModalRef.current.contains(event.target)
+      ) {
+        setCalenderModal(false);
+      }
+    };
+    if (CalenderModal) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [CalenderModal]);
 
   return (
     <div className="advance-style4 at-home10 mt-100 mt50-lg mb10 mx-auto animate-up-2">
@@ -109,62 +463,125 @@ const FilterContent = () => {
                     </div>
 
                     <div className="col-md-2 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate">
-                      <div className="mt-3 mt-md-0 px-0">
-                        <div className="bootselect-multiselect">
+                      <div className="mt-3 mt-md-0 px-0 cursor-pointer">
+                        <div
+                          className="bootselect-multiselect"
+                          onClick={() => setCalenderModal(true)}
+                        >
                           <label className="fz13">Add Checkin</label>
-                          <LookingFor />
+                          Add Dates
                         </div>
                       </div>
                     </div>
 
                     <div className="col-md-2 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate">
-                      <div className="mt-3 mt-md-0">
-                        <div className="bootselect-multiselect">
+                      <div className="mt-3 mt-md-0 cursor-pointer">
+                        <div
+                          className="bootselect-multiselect"
+                          onClick={() => setCalenderModal(true)}
+                        >
                           <label className="fz13">Checkout</label>
-                          <Location />
+                          Add Dates
                         </div>
                       </div>
                     </div>
 
-                    <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate">
+                    {CalenderModal && (
+                      
+                        <div   ref={CalenderModalRef} className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-2xl shadow-lg w-[700px] z-50">
+                          {/* Tabs */}
+                          <div className="flex justify-center space-x-4 border-b pb-2">
+                            {["dates", "months", "flexible"].map((tab) => (
+                              <button
+                                key={tab}
+                                className={`px-4 py-2 rounded-full ${
+                                  activeTabone === tab
+                                    ? "bg-[#ffc500] font-semibold"
+                                    : "text-gray-600"
+                                }`}
+                                onClick={() => setActiveTabone(tab)}
+                              >
+                                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                              </button>
+                            ))}
+                          </div>
+
+                          {/* Tab Content */}
+                          <div className="mt-4">
+                            {activeTabone === "dates" && <DatesTab />}
+                            {activeTabone === "months" && <MonthsTab />}
+                            {activeTabone === "flexible" && <FlexibleTab />}
+                          </div>
+
+                          {/* Close Button */}
+                        </div>
+                      
+                    )}
+
+                    <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate relative">
                       <div className="mt-3 mt-md-0">
                         <div className="dropdown-lists">
-                          <label className="fz13 mb-1">Add Guests</label>
+                          <label className="fz13 mb-1">Guests</label>
                           <div
-                            className="btn open-btn text-start dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside"
+                            className="btn open-btn text-start dropdown-toggle w-full px-1 py-2"
+                            onClick={() =>
+                              setIsGuestModalOpen(!isGuestModalOpen)
+                            }
                             style={{ fontSize: "13px" }}
                           >
-                            ${price.min} - ${price.max}{" "}
+                            {getGuestSummary()}{" "}
                             <i className="fas fa-caret-down" />
-                          </div>
-                          <div className="dropdown-menu">
-                            <div className="widget-wrapper pb20 mb0 pl20 pr20">
-                              <div className="range-wrapper at-home10">
-                                {/* Using rc-slider */}
-                                <Slider
-                                  range
-                                  min={0}
-                                  max={100000}
-                                  defaultValue={[price.min, price.max]}
-                                  onChange={handleOnChange}
-                                  tipFormatter={(value) => `$${value}`}
-                                />
-                                <div className="d-flex align-items-center">
-                                  <span id="slider-range-value1">
-                                    ${price.min}
-                                  </span>
-                                  <i className="fa-sharp fa-solid fa-minus mx-2 dark-color icon" />
-                                  <span id="slider-range-value2">
-                                    ${price.max}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </div>
+
+                      {/* Guest Modal */}
+                      {isGuestModalOpen && (
+                        <div
+                          ref={guestModalRef}
+                          className="absolute top-full left-0 mt-1 bg-white shadow-lg rounded-lg p-4 z-50 w-64 border"
+                        >
+                          {["adults", "children", "infants", "pets"].map(
+                            (type, index) => (
+                              <div
+                                key={index}
+                                className="flex justify-between items-center border-b py-2"
+                              >
+                                <div>
+                                  <p className="font-medium">
+                                    {type.charAt(0).toUpperCase() +
+                                      type.slice(1)}
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    {type === "adults"
+                                      ? "Ages 13+"
+                                      : type === "children"
+                                      ? "Ages 2-12"
+                                      : type === "infants"
+                                      ? "Under 2"
+                                      : "Bringing a pet?"}
+                                  </p>
+                                </div>
+                                <div className="flex items-center">
+                                  <button
+                                    className="border px-[11px] py-1 rounded-full"
+                                    onClick={() => updateGuestCount(type, -1)}
+                                  >
+                                    -
+                                  </button>
+                                  <span className="mx-3">{guests[type]}</span>
+                                  <button
+                                    className="border px-[9px] py-1 rounded-full"
+                                    onClick={() => updateGuestCount(type, 1)}
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm">
@@ -219,9 +636,11 @@ const FilterContent = () => {
                                 <div className="box-search">
                                   <input
                                     className="form-control bgc-f7 bdrs12 ps-0"
-                                    placeholder={tab.label === "Experiences"
-                                      ? "Search your experiences"
-                                      : `Apartments, experiences, destinations! ${tab.label}`}
+                                    placeholder={
+                                      tab.label === "Experiences"
+                                        ? "Search your experiences"
+                                        : `Apartments, experiences, destinations! ${tab.label}`
+                                    }
                                     type="text"
                                     name="search"
                                   />
@@ -230,7 +649,13 @@ const FilterContent = () => {
                             </div>
                           </div>
                           {/* Search Button */}
-                          <button style={{position:"fixed", right:50, width: 55, height:55}}
+                          <button
+                            style={{
+                              position: "fixed",
+                              right: 50,
+                              width: 55,
+                              height: 55,
+                            }}
                             className="ud-btn  btn-thm ms-2 search-tbn search-btn"
                             type="button"
                             onClick={() => navigate("/grid-full-3-col")}
@@ -243,7 +668,14 @@ const FilterContent = () => {
 
                     {/* Filter Section */}
                     <div className="col-4 col-md-4 d-flex justify-content-md-end mt-3 mt-md-0">
-                      <button style={{position:"fixed", top:60, right:5, width: 55, height:55}}
+                      <button
+                        style={{
+                          position: "fixed",
+                          top: 60,
+                          right: 5,
+                          width: 55,
+                          height: 55,
+                        }}
                         className="advance-search-btn"
                         type="button"
                         data-bs-toggle="modal"
@@ -260,21 +692,21 @@ const FilterContent = () => {
         </div>
       )}
 
-
-
-
-
-
-
-
-{isModalOpen && (
+      {isModalOpen && (
         <div
-          ref={modalRef}
+          ref={isModalOpenRef}
           className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg p-4 z-50"
         >
           {/* Recent Searches */}
-          <h3 className="text-sm font-semibold  text-left text-gray-600">Recent searches</h3>
-          <div className="flex items-center gap-2 mt-2 cursor-pointer" onClick={() => handleSelectSuggestion("SHAPE Itaim Apt high standard studio")}>
+          <h3 className="text-sm font-semibold  text-left text-gray-600">
+            Recent searches
+          </h3>
+          <div
+            className="flex items-center gap-2 mt-2 cursor-pointer"
+            onClick={() =>
+              handleSelectSuggestion("SHAPE Itaim Apt high standard studio")
+            }
+          >
             <img
               src="https://img.freepik.com/free-photo/close-up-horse-nature_23-2149312906.jpg"
               alt="Recent Search"
@@ -284,12 +716,16 @@ const FilterContent = () => {
               <p className="font-medium text-gray-900">
                 SHAPE Itaim Apt high standard studio 15th floor
               </p>
-              <p className="text-xs text-left text-gray-500">Feb 26 – Mar 3 · 1 guest</p>
+              <p className="text-xs text-left text-gray-500">
+                Feb 26 – Mar 3 · 1 guest
+              </p>
             </div>
           </div>
 
           {/* Suggested Destinations */}
-          <h3 className="text-sm font-semibold text-gray-600 mt-4 text-left">Suggested destinations</h3>
+          <h3 className="text-sm font-semibold text-gray-600 mt-4 text-left">
+            Suggested destinations
+          </h3>
           <ul className="mt-2 space-y-3">
             {suggestions.map((item, index) => (
               <li
@@ -307,8 +743,6 @@ const FilterContent = () => {
           </ul>
         </div>
       )}
-
-
     </div>
   );
 };
