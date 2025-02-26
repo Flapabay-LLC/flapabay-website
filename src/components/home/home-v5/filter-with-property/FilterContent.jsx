@@ -1,20 +1,18 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Slider from "rc-slider";
+
 import "rc-slider/assets/index.css";
-import LookingFor from "./LookingFor";
-import Location from "./Location";
+
 import { SearchNormal, Setting4, Size } from "iconsax-react";
 import { useScreenSize } from "@/utilis/screenUtils";
-// import CustomModal from "./CustomModal";
+
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa6";
 import { TiMinus } from "react-icons/ti";
 import { atom, useAtom } from "jotai";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-// Jotai atom for storing the selected months
-// const selectedMonthsAtom = atom(3);
+
 const selectedMonthsAtom = atom(3);
 const selectedFlexibleOptionAtom = atom(null);
 const selectedMonthsFlexibleAtom = atom([]);
@@ -116,6 +114,146 @@ const CalendarMonth = ({ month, year, selectedDate, onDateClick }) => {
                     new Date(year, month, day).toDateString() ===
                       selectedDate.toDateString()
                   ? "bg-[#ffc500] text-white font-medium"
+                  : "hover:bg-gray-200"
+              }`}
+              onClick={() =>
+                new Date(year, month, day) >= today && onDateClick(day)
+              }
+              disabled={new Date(year, month, day) < today}
+            >
+              {day}
+            </button>
+          ) : (
+            <div key={index}></div>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
+
+const DatesTabtwo = () => {
+  const today = new Date();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+
+  const handleDateClick = (date) => {
+    const selectedDate = new Date(currentYear, currentMonth, date);
+
+    if (selectedDate < today) return; // Prevent selecting past dates
+
+    if (!startDate || (startDate && endDate)) {
+      // If no start date OR both dates exist, reset and select new start date
+      setStartDate(selectedDate);
+      setEndDate(null);
+    } else if (selectedDate >= startDate) {
+      // If selecting a valid end date after start date
+      setEndDate(selectedDate);
+    } else {
+      // If clicking before the start date, update the start date
+      setStartDate(selectedDate);
+      setEndDate(null);
+    }
+  };
+
+  const goToNextMonth = () => {
+    setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+    if (currentMonth === 11) setCurrentYear((prev) => prev + 1);
+  };
+
+  const goToPreviousMonth = () => {
+    if (currentYear > today.getFullYear() || currentMonth > today.getMonth()) {
+      setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+      if (currentMonth === 0) setCurrentYear((prev) => prev - 1);
+    }
+  };
+
+  return (
+    <div className="text-center min-h-[300px]">
+      <div className="flex justify-between items-center">
+        {/* Back Arrow - Only enabled if not at current month */}
+        <button
+          onClick={goToPreviousMonth}
+          className={`p-2 rounded-full ${
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()
+              ? "bg-gray-300 cursor-not-allowed"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
+          disabled={
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()
+          }
+        >
+          <FiArrowLeft size={24} />
+        </button>
+
+        <CalendarMonthtwo
+          month={currentMonth}
+          year={currentYear}
+          startDate={startDate}
+          endDate={endDate}
+          onDateClick={handleDateClick}
+        />
+
+        {/* Next Arrow */}
+        <button
+          onClick={goToNextMonth}
+          className="p-2 rounded-full bg-gray-200 hover:bg-gray-300"
+        >
+          <FiArrowRight size={24} />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// CalendarMonth Component: Displays a month's calendar
+const CalendarMonthtwo = ({ month, year, startDate, endDate, onDateClick }) => {
+  const today = new Date();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(year, month, 1).getDay();
+
+  const days = Array.from({ length: firstDay }, () => null).concat(
+    Array.from({ length: daysInMonth }, (_, i) => i + 1)
+  );
+
+  const isInRange = (day) => {
+    const date = new Date(year, month, day);
+    return startDate && endDate && date > startDate && date < endDate;
+  };
+
+  return (
+    <div className="text-center">
+      <h3 className="text-lg font-semibold">
+        {new Date(year, month).toLocaleString("en-US", { month: "long" })}{" "}
+        {year}
+      </h3>
+      <div className="grid grid-cols-7 gap-1 text-gray-600 text-sm mt-2">
+        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
+          <div key={day} className="font-medium">
+            {day}
+          </div>
+        ))}
+        {days.map((day, index) =>
+          day ? (
+            <button
+              key={index}
+              className={`p-2 w-10 h-10 rounded-full ${
+                new Date(year, month, day) < today
+                  ? "text-gray-400 cursor-not-allowed"
+                  : startDate &&
+                    new Date(year, month, day).toDateString() ===
+                      startDate.toDateString()
+                  ? "bg-[#ffc500] text-white font-medium"
+                  : endDate &&
+                    new Date(year, month, day).toDateString() ===
+                      endDate.toDateString()
+                  ? "bg-[#ffc500] text-white font-medium"
+                  : isInRange(day)
+                  ? "bg-yellow-200"
                   : "hover:bg-gray-200"
               }`}
               onClick={() =>
@@ -284,11 +422,11 @@ const FilterContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const guestModalRef = useRef(null);
   const CalenderModalRef = useRef(null);
+  const CalendertwoModalRef = useRef(null);
   const isModalOpenRef = useRef(null);
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
 
   const [searchValue, setSearchValue] = useState("");
   const modalRef = useRef(null);
@@ -347,7 +485,6 @@ const FilterContent = () => {
     };
   }, [isGuestModalOpen]);
 
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -364,8 +501,6 @@ const FilterContent = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isModalOpen]);
-
-
 
   // Update guest count
   const updateGuestCount = (type, value) => {
@@ -385,9 +520,10 @@ const FilterContent = () => {
   };
 
   const [CalenderModal, setCalenderModal] = useState(false);
+  const [CalendertwoModal, setCalendertwoModal] = useState(false);
 
   const tabs = [
-    { id: "Explore", label: "Stays" },
+    { id: "Explore", label: "Explore" },
     { id: "Experiences", label: "Experiences" },
   ];
 
@@ -413,6 +549,22 @@ const FilterContent = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [CalenderModal]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        CalendertwoModalRef.current &&
+        !CalendertwoModalRef.current.contains(event.target)
+      ) {
+        setCalendertwoModal(false);
+      }
+    };
+    if (CalendertwoModal) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [CalendertwoModal]);
 
   return (
     <div className="advance-style4 at-home10 mt-100 mt50-lg mb10 mx-auto animate-up-2">
@@ -428,7 +580,184 @@ const FilterContent = () => {
           </li>
         ))}
       </ul>
-      {!isMobile ? (
+
+      {activeTab === "Explore" ? (
+        !isMobile ? (
+          <div>
+            <div className="tab-content text-start">
+              {tabs.map((tab) => (
+                <div
+                  className={`${activeTab === tab.id ? "active" : ""} tab-pane`}
+                  key={tab.id}
+                >
+                  <div className="advance-content-style3 at-home5">
+                    <div className="row align-items-center">
+                      <div className="col-6 col-md-6 col-xl-4 bdrr1 bdrrn-sm">
+                        <label className="form-label fz16 mb-1">
+                          Where to ?
+                        </label>
+                        <div className="advance-search-field position-relative">
+                          <form className="form-search position-relative">
+                            <div className="box-search">
+                              <input
+                                className="form-control bgc-f7 bdrs12 ps-0"
+                                placeholder={
+                                  tab.label === "Experiences"
+                                    ? "Search your experiences"
+                                    : `Apartments, experiences, destinations! ${tab.label}`
+                                }
+                                type="text"
+                                name="search"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                                onFocus={handleFocus}
+                                // onBlur={handleBlur}
+                              />
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+
+                      <div className="col-md-2 col-xl-3 bdrr1 bdrrn-sm px20 pl15-sm hidate">
+                        <div className="mt-3 mt-md-0 px-0 cursor-pointer">
+                          <div
+                            className="bootselect-multiselect"
+                            onClick={() => setCalendertwoModal(true)}
+                          >
+                            <label className="fz13">Dates</label>
+                            Add Dates
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-4 col-xl-3 bdrr1 bdrrn-sm px20 pl15-sm hidate relative">
+                        <div className="mt-3 mt-md-0">
+                          <div className="dropdown-lists">
+                            <label className="fz13 ">Guests</label>
+                            <div
+                              className="btn open-btn text-start dropdown-toggle w-full px-1 py-0"
+                              onClick={() =>
+                                setIsGuestModalOpen(!isGuestModalOpen)
+                              }
+                              style={{ fontSize: "13px" }}
+                            >
+                              {getGuestSummary()}{" "}
+                              <i className="fas fa-caret-down" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Guest Modal */}
+                      </div>
+
+                      <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm">
+                        <div className="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+                          <button
+                            className="advance-search-btn"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#advanceSeachModal"
+                          >
+                            <span className="flaticon-settings" /> Filters
+                          </button>
+                          <button
+                            className="ud-btn btn-thm ms-2 search-tbn"
+                            type="button"
+                            onClick={() => navigate("/grid-full-3-col")}
+                          >
+                            <SearchNormal color="white" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="tab-content text-start">
+              {tabs.map((tab) => (
+                <div
+                  className={`${activeTab === tab.id ? "active" : ""} tab-pane`}
+                  key={tab.id}
+                >
+                  <div className="advance-content-style3 at-home5">
+                    <div className="flex-row align-items-center">
+                      {/* Search Section */}
+                      <div className="col-11 col-md-8 d-flex flex-column">
+                        {/* Label and Input Group */}
+                        <div className="form-group w-100">
+                          <div className="advance-search-field input-wrapper position-relative">
+                            <div className="col-8 col-md-4 col-xl-3 bdrr1 bdrrn-sm">
+                              <label
+                                htmlFor="searchInput"
+                                className="form-label fz16 mb-1"
+                              >
+                                Where to?
+                              </label>
+                              <div className="advance-search-field position-relative">
+                                <form className="form-search position-relative">
+                                  <div className="box-search">
+                                    <input
+                                      className="form-control bgc-f7 bdrs12 ps-0"
+                                      placeholder={
+                                        tab.label === "Experiences"
+                                          ? "Search your experiences"
+                                          : `Apartments, experiences, destinations! ${tab.label}`
+                                      }
+                                      type="text"
+                                      name="search"
+                                    />
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            {/* Search Button */}
+                            <button
+                              style={{
+                                position: "fixed",
+                                right: 50,
+                                width: 55,
+                                height: 55,
+                              }}
+                              className="ud-btn  btn-thm ms-2 search-tbn search-btn"
+                              type="button"
+                              onClick={() => navigate("/grid-full-3-col")}
+                            >
+                              <SearchNormal color="white" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Filter Section */}
+                      <div className="col-4 col-md-4 d-flex justify-content-md-end mt-3 mt-md-0">
+                        <button
+                          style={{
+                            position: "fixed",
+                            top: 60,
+                            right: 5,
+                            width: 55,
+                            height: 55,
+                          }}
+                          className="advance-search-btn"
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#advanceSeachModal"
+                        >
+                          <Setting4 size={22} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ) : !isMobile ? (
         <div>
           <div className="tab-content text-start">
             {tabs.map((tab) => (
@@ -486,44 +815,12 @@ const FilterContent = () => {
                       </div>
                     </div>
 
-                    {CalenderModal && (
-                      
-                        <div   ref={CalenderModalRef} className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-2xl shadow-lg w-[700px] z-50">
-                          {/* Tabs */}
-                          <div className="flex justify-center space-x-4 border-b pb-2">
-                            {["dates", "months", "flexible"].map((tab) => (
-                              <button
-                                key={tab}
-                                className={`px-4 py-2 rounded-full ${
-                                  activeTabone === tab
-                                    ? "bg-[#ffc500] font-semibold"
-                                    : "text-gray-600"
-                                }`}
-                                onClick={() => setActiveTabone(tab)}
-                              >
-                                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                              </button>
-                            ))}
-                          </div>
-
-                          {/* Tab Content */}
-                          <div className="mt-4">
-                            {activeTabone === "dates" && <DatesTab />}
-                            {activeTabone === "months" && <MonthsTab />}
-                            {activeTabone === "flexible" && <FlexibleTab />}
-                          </div>
-
-                          {/* Close Button */}
-                        </div>
-                      
-                    )}
-
-                    <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate relative">
+                    <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate">
                       <div className="mt-3 mt-md-0">
                         <div className="dropdown-lists">
                           <label className="fz13 mb-1">Guests</label>
                           <div
-                            className="btn open-btn text-start dropdown-toggle w-full px-1 py-2"
+                            className="btn open-btn text-start dropdown-toggle w-full px-1 py-0"
                             onClick={() =>
                               setIsGuestModalOpen(!isGuestModalOpen)
                             }
@@ -536,52 +833,6 @@ const FilterContent = () => {
                       </div>
 
                       {/* Guest Modal */}
-                      {isGuestModalOpen && (
-                        <div
-                          ref={guestModalRef}
-                          className="absolute top-full left-0 mt-1 bg-white shadow-lg rounded-lg p-4 z-50 w-64 border"
-                        >
-                          {["adults", "children", "infants", "pets"].map(
-                            (type, index) => (
-                              <div
-                                key={index}
-                                className="flex justify-between items-center border-b py-2"
-                              >
-                                <div>
-                                  <p className="font-medium">
-                                    {type.charAt(0).toUpperCase() +
-                                      type.slice(1)}
-                                  </p>
-                                  <p className="text-xs text-gray-500">
-                                    {type === "adults"
-                                      ? "Ages 13+"
-                                      : type === "children"
-                                      ? "Ages 2-12"
-                                      : type === "infants"
-                                      ? "Under 2"
-                                      : "Bringing a pet?"}
-                                  </p>
-                                </div>
-                                <div className="flex items-center">
-                                  <button
-                                    className="border px-[11px] py-1 rounded-full"
-                                    onClick={() => updateGuestCount(type, -1)}
-                                  >
-                                    -
-                                  </button>
-                                  <span className="mx-3">{guests[type]}</span>
-                                  <button
-                                    className="border px-[9px] py-1 rounded-full"
-                                    onClick={() => updateGuestCount(type, 1)}
-                                  >
-                                    +
-                                  </button>
-                                </div>
-                              </div>
-                            )
-                          )}
-                        </div>
-                      )}
                     </div>
 
                     <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm">
@@ -690,6 +941,7 @@ const FilterContent = () => {
             ))}
           </div>
         </div>
+        // <div>hello</div>
       )}
 
       {isModalOpen && (
@@ -741,6 +993,114 @@ const FilterContent = () => {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+      {CalenderModal && (
+        <div
+          ref={CalenderModalRef}
+          className="absolute top-28 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-2xl shadow-lg w-[700px] z-50"
+        >
+          {/* Tabs */}
+          <div className="flex justify-center space-x-4 border-b pb-2">
+            {["dates", "months", "flexible"].map((tab) => (
+              <button
+                key={tab}
+                className={`px-4 py-2 rounded-full ${
+                  activeTabone === tab
+                    ? "bg-[#ffc500] font-semibold"
+                    : "text-gray-600"
+                }`}
+                onClick={() => setActiveTabone(tab)}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <div className="mt-4">
+            {activeTabone === "dates" && <DatesTab />}
+            {activeTabone === "months" && <MonthsTab />}
+            {activeTabone === "flexible" && <FlexibleTab />}
+          </div>
+
+          {/* Close Button */}
+        </div>
+      )}
+      {CalendertwoModal && (
+        <div
+          ref={CalendertwoModalRef}
+          className="absolute top-28 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-2xl shadow-lg w-[700px] z-50"
+        >
+          {/* Tabs */}
+          <div className="flex justify-center space-x-4 border-b pb-2">
+            {["dates", "months", "flexible"].map((tab) => (
+              <button
+                key={tab}
+                className={`px-4 py-2 rounded-full ${
+                  activeTabone === tab
+                    ? "bg-[#ffc500] font-semibold"
+                    : "text-gray-600"
+                }`}
+                onClick={() => setActiveTabone(tab)}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <div className="mt-4">
+            {activeTabone === "dates" && <DatesTabtwo />}
+            {activeTabone === "months" && <MonthsTab />}
+            {activeTabone === "flexible" && <FlexibleTab />}
+          </div>
+
+          {/* Close Button */}
+        </div>
+      )}
+
+      {isGuestModalOpen && (
+        <div
+          ref={guestModalRef}
+          className="absolute  top-full mt-1 bg-white shadow-lg rounded-lg p-4 z-50 w-full border"
+        >
+          {["adults", "children", "infants", "pets"].map((type, index) => (
+            <div
+              key={index}
+              className="flex text-left justify-between items-center border-b py-2"
+            >
+              <div>
+                <p className="font-medium">
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </p>
+                <p className="text-xs text-left text-gray-500">
+                  {type === "adults"
+                    ? "Ages 13+"
+                    : type === "children"
+                    ? "Ages 2-12"
+                    : type === "infants"
+                    ? "Under 2"
+                    : "Bringing a pet?"}
+                </p>
+              </div>
+              <div className="flex items-center">
+                <button
+                  className="border px-[11px] py-1 rounded-full"
+                  onClick={() => updateGuestCount(type, -1)}
+                >
+                  -
+                </button>
+                <span className="mx-3">{guests[type]}</span>
+                <button
+                  className="border px-[9px] py-1 rounded-full"
+                  onClick={() => updateGuestCount(type, 1)}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

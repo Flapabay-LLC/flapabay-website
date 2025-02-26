@@ -49,7 +49,9 @@ const PropertiesByCategory  = () => {
         ) : (
           // Regular icons for PC
           <>
-             {category.icon && <category.icon size={28} color="#ffc500"  variant="TwoTone" />}
+          
+             {category.icon && <category.icon className="ml-auto mr-auto" size={28} color="#ffc500"  variant="TwoTone" />}
+             
           </>
         )}
 

@@ -104,6 +104,7 @@ import WishlistPage from "./components/wishlist-page";
 import RecentlyViewed from "./components/wishlist-page-recently";
 import AccountPage from "./components/account-page";
 import BookingPage from "./components/booking-page";
+import ConfirmAndPay from "./components/payment-page";
 
 
 
@@ -224,6 +225,10 @@ function App() {
               <Route
                 path="account-page"
                 element={<AccountPage/>}
+              />
+              <Route
+                path="payment-page"
+                element={<ConfirmAndPay/>}
               />
 
               <Route path="agents" element={<Agents />} />

@@ -69,15 +69,15 @@ interface SignupModalProps {
 }
 
 const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
-
-
-
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
         onClose(); // Close modal if clicked outside
       }
     };
@@ -87,14 +87,6 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
-
-
-
-
-
-
-
-
 
   const [selectedCountryCode, setSelectedCountryCode] = useState(
     countries[0].code
@@ -143,16 +135,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
     setIsEmailMode((prevMode) => !prevMode); // Toggle between email and phone mode
   };
   return (
-    <div
-   
-    >
+    <div>
       <div
-        // Prevent closing modal when clicking inside
+      // Prevent closing modal when clicking inside
       >
-    
         <div className="">
-          
-
           {!isEmailMode ? (
             <div>
               <div className="border border-gray-400 rounded-t-md">
@@ -160,7 +147,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
                   Country code
                 </label>
                 <select
-                style={{outline:"none"}}
+                  style={{ outline: "none" }}
                   className="bg-white block w-full rounded-md sm:text-sm h-10 pl-1"
                   value={selectedCountryCode}
                   onChange={handleCountryCodeChange}

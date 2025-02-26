@@ -9,6 +9,7 @@ import FinishSignupModal from "./FinishSignupModal.";
 import ConfirmationModal from "./ConfirmationModal";
 import { Link } from "react-router-dom";
 import EnterCodeModal from "./EnterCodeModal";
+import EmailConfirmationModal from "./EmailConfirmationModal";
 // List of countries with phone codes
 const countries = [
   { name: "Afghanistan", code: "+93" },
@@ -70,15 +71,15 @@ interface LoginModalProps {
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
-
-
-
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
         onClose(); // Close modal if clicked outside
       }
     };
@@ -89,14 +90,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
     };
   }, [onClose]);
 
-
-
-
-
-
-
-
-
   const [selectedCountryCode, setSelectedCountryCode] = useState(
     countries[0].code
   ); // Default to the first country
@@ -104,19 +97,29 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [isEmailMode, setIsEmailMode] = useState(false);
   const [showFinishModal, setShowFinishModal] = useState(false);
-  
 
-  
+  const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
-  const [showEmailConfirmationModal, setShowEmailConfirmationModal] =
-    useState(false);
+
+
+
+
+  const handlePhoneContinue = () => {
+    setShowConfirmationModal(true);
+  };
   const handleEmailContinue = () => {
     setShowEmailConfirmationModal(true);
   };
 
   if (showEmailConfirmationModal) {
     return (
-      <EnterCodeModal onClose={() => setShowEmailConfirmationModal(false)} />
+      <ConfirmationModal onClose={() => setShowEmailConfirmationModal(false)} />
+    );
+  }
+  if (showConfirmationModal) {
+    return (
+      <EnterCodeModal onClose={() => setShowConfirmationModal(false)} />
     );
   }
 
@@ -144,16 +147,11 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
     setIsEmailMode((prevMode) => !prevMode); // Toggle between email and phone mode
   };
   return (
-    <div
-   
-    >
+    <div>
       <div
-        // Prevent closing modal when clicking inside
+      // Prevent closing modal when clicking inside
       >
-    
         <div className="">
-          
-
           {!isEmailMode ? (
             <div>
               <div className="border border-gray-400 rounded-t-md">
@@ -161,7 +159,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                   Country code
                 </label>
                 <select
-                style={{outline:"none"}}
+                  style={{ outline: "none" }}
                   className="bg-white block w-full rounded-md sm:text-sm h-10 pl-1"
                   value={selectedCountryCode}
                   onChange={handleCountryCodeChange}
@@ -214,14 +212,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
 
           {isEmailMode ? (
             <button
-            onClick={handleEmailContinue}
+              onClick={handlePhoneContinue}
               className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
             >
               Continue
             </button>
           ) : (
             <button
-            onClick={handleEmailContinue}
+              onClick={handleEmailContinue}
               className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
             >
               Continue with phone
@@ -253,12 +251,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
               onClick={toggleMode}
               className="w-full border border-gray-600 rounded-md py-2 flex items-center space-x-0"
             >
-              {/* <img
-                src={isEmailMode ? phone:email}
-                alt="Toggle Icon"
-                className="h-4 w-7 pl-3"
-              /> */}
-
               {isEmailMode ? (
                 <img src={phone} alt="Toggle Icon" className="h-4 w-7 pl-3" />
               ) : (

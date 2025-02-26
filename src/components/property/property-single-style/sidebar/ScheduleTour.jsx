@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { atom, useAtom } from "jotai";
+import { Link } from "react-router-dom";
 
 // Define Jotai atoms for guest counts
 const adultsAtom = atom(0);
@@ -69,9 +70,11 @@ export default function ScheduleTour() {
       </div>
 
       {/* Reserve Button */}
+      <Link to={"/payment-page"}>
       <button className="w-full mt-4 bg-[#ffc500] text-white py-3 rounded-lg font-semibold">
         Reserve
       </button>
+      </Link>
 
       {/* Price Breakdown */}
       <p className="text-xs text-gray-500 text-center mt-2">
