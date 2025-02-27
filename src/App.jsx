@@ -105,6 +105,7 @@ import RecentlyViewed from "./components/wishlist-page-recently";
 import AccountPage from "./components/account-page";
 import BookingPage from "./components/booking-page";
 import ConfirmAndPay from "./components/payment-page";
+import ReservationPage from "./components/reservation-page";
 
 
 
@@ -168,6 +169,10 @@ function App() {
               <Route
                 path="dashboard-my-properties"
                 element={<DashboardMyProperties />}
+              />
+              <Route
+                path="reservation-page"
+                element={<ReservationPage />}
               />
               <Route
                 path="dashboard-my-favourites"

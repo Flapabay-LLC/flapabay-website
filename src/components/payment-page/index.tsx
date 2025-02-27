@@ -434,6 +434,21 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
     "Ukraine",
   ];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
   return (
     <>
       <header className="w-full bg-white z-50 fixed top-0 left-0 flex justify-between items-center p-2 px-4">
@@ -716,9 +731,11 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
             <span>$965.46 AUD</span>
           </div>
         </div>
+        <Link to={"/reservation-page"}>
         <button className="w-full bg-[#FFC500] text-white py-3 rounded-lg font-semibold">
             Confirm and pay
           </button>
+          </Link>
 
         {isModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -741,6 +758,8 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
             </div>
           </div>
         )}
+
+
       </div>
     </>
   );
