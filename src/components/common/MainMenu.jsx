@@ -1,13 +1,14 @@
 import {
-  homeItems,
   blogItems,
+  homeItems,
   listingItems,
-  propertyItems,
   pageItems,
+  propertyItems,
 } from "@/data/navItems";
-import { Link} from "react-router-dom";
-import {useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 const MainMenu = () => {
   const { pathname } = useLocation()
@@ -70,12 +71,12 @@ const MainMenu = () => {
 
       <li className="megamenu_style dropitem">
         <a className="list-item" href="#">
-          <span className={topMenu == "listing" ? "title menuActive" : "title"}>
-            Listing
+          <span className={topMenu == "explore" ? "title menuActive" : "title"}>
+            Explore
           </span>
-          <span className="arrow"></span>
+          {/* <span className="arrow"></span> */}
         </a>
-        <ul className="row dropdown-megamenu sub-menu">
+        {/* <ul className="row dropdown-megamenu sub-menu">
           {listingItems.map((item, index) => (
             <li className="col mega_menu_list" key={index}>
               <h4 className="title">{item.title}</h4>
@@ -93,11 +94,28 @@ const MainMenu = () => {
               </ul>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </li>
       {/* End listings */}
-
-      <li className="visible_list dropitem">
+      <li className="megamenu_style dropitem">
+        <a className="list-item" href="/contact">
+          <span className={topMenu == "contact" ? "title menuActive" : "title"}>
+            Contact Us
+          </span>
+          {/* <span className="arrow"></span> */}
+        </a>
+        
+      </li>
+      <li className="megamenu_style dropitem">
+        <a className="list-item" href="/contact">
+          <span className={topMenu == "help" ? "title menuActive" : "title"}>
+            Help Center
+          </span>
+          {/* <span className="arrow"></span> */}
+        </a>
+        
+      </li>
+      {/* <li className="visible_list dropitem">
         <a className="list-item" href="#">
           <span
             className={topMenu == "property" ? "title menuActive" : "title"}
@@ -134,10 +152,10 @@ const MainMenu = () => {
             </li>
           ))}
         </ul>
-      </li>
+      </li> */}
       {/* End property Items */}
 
-      <li className="visible_list dropitem">
+      {/* <li className="visible_list dropitem">
         <a className="list-item" href="#">
           <span className={topMenu == "blog" ? "title menuActive" : "title"}>
             Blog
@@ -153,10 +171,10 @@ const MainMenu = () => {
             </li>
           ))}
         </ul>
-      </li>
+      </li> */}
       {/* End blog Items */}
 
-      <li className="visible_list dropitem">
+      {/* <li className="visible_list dropitem">
         <a className="list-item" href="#">
           <span className={topMenu == "pages" ? "title menuActive" : "title"}>
             Pages
@@ -172,7 +190,7 @@ const MainMenu = () => {
             </li>
           ))}
         </ul>
-      </li>
+      </li> */}
       {/* End pages Items */}
     </ul>
   );
