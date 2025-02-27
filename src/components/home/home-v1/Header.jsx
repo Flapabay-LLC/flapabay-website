@@ -33,18 +33,10 @@ const Header = () => {
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="logos mr40">
                     <Link className="header-logo logo1" to="/">
-                      <img
-                       
-                        src="/images/header-logo2.svg"
-                        alt="Header Logo"
-                      />
+                      <img src="/images/header-logo2.svg" alt="Header Logo" />
                     </Link>
                     <Link className="header-logo logo2" to="/">
-                      <img
-                      
-                        src="/images/header-logo2.svg"
-                        alt="Header Logo"
-                      />
+                      <img src="/images/header-logo2.svg" alt="Header Logo" />
                     </Link>
                   </div>
                   {/* End Logo */}
@@ -66,11 +58,10 @@ const Header = () => {
                   >
                     {/* <i className="far fa-user-circle fz16 me-2" />{" "} */}
                     {/* <span className="d-none d-xl-block">Login / Register</span> */}
-                    
                   </a>
                   {/* <span className="d-none d-xl-block">Switch to hosting</span> */}
                   <Link
-                  onClick={handleSwitch}
+                    onClick={handleSwitch}
                     className=" font-medium"
                     to="/dashboard-home"
                     // to="/wizards"
@@ -80,24 +71,22 @@ const Header = () => {
                   </Link>
 
                   <div className="flex items-center">
-                {/* Global Icon to Open Modal */}
-                <button onClick={() => setIsModalOpen(true)} className="p-2 text-xl">
-                  <RiGlobalLine />
-                </button>
-                {/* <span className="ml-2">{selectedCurrency}</span> */}
-              </div>
-
-
+                    {/* Global Icon to Open Modal */}
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className="p-2 text-xl"
+                    >
+                      <RiGlobalLine />
+                    </button>
+                    {/* <span className="ml-2">{selectedCurrency}</span> */}
+                  </div>
 
                   <Link
-
-href="#"
+                    href="#"
                     className="login-info d-flex align-items-center ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
                     data-bs-toggle="modal"
                     data-bs-target="#loginSignupModal"
                     role="button"
-
-
 
                     // className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
                     // to="/dashboard-add-property"
@@ -114,14 +103,12 @@ href="#"
                     aria-controls="SidebarPanelLabel"
                   >
                     <img
-                    
                       className="img-1"
                       src="/images/icon/nav-icon-white.svg"
                       alt="humberger menu"
                     />
 
                     <img
-               
                       className="img-2"
                       src="/images/icon/nav-icon-dark.svg"
                       alt="humberger menu"
@@ -141,7 +128,6 @@ href="#"
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSelect={(currency) => setSelectedCurrency(currency)}
-        
       />
 
       {/* Signup Modal */}
