@@ -476,7 +476,7 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
             <div>
               <p className="text-gray-700 font-medium">This is a rare find.</p>
               <p className="text-gray-500">
-                Candice's place is usually booked.
+                Candice's place is usually book.
               </p>
             </div>
             <IoDiamondOutline className="text-2xl text-[#FFC500]" />
