@@ -106,6 +106,9 @@ import AccountPage from "./components/account-page";
 import BookingPage from "./components/booking-page";
 import ConfirmAndPay from "./components/payment-page";
 import ReservationPage from "./components/reservation-page";
+import HelpPage from "./components/help-center";
+import BottomNav from "./components/bottom-nav";
+
 
 
 
@@ -235,6 +238,10 @@ function App() {
                 path="payment-page"
                 element={<ConfirmAndPay/>}
               />
+              <Route
+                path="help-center"
+                element={<HelpPage/>}
+              />
 
               <Route path="agents" element={<Agents />} />
               <Route path="agency" element={<Agency />} />
@@ -300,6 +307,11 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
+
+           <BottomNav/>
+
+
+        
         </BrowserRouter>
         <ScrollToTop />
       </div>

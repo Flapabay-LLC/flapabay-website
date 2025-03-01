@@ -8,6 +8,7 @@ import phone from "../../assets/smartphone.png";
 import FinishSignupModal from "./FinishSignupModal.";
 import ConfirmationModal from "./ConfirmationModal";
 import { Link } from "react-router-dom";
+import axios from "axios";
 // List of countries with phone codes
 const countries = [
   { name: "Afghanistan", code: "+93" },
@@ -95,6 +96,9 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [isEmailMode, setIsEmailMode] = useState(false);
   const [showFinishModal, setShowFinishModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState("");
   const handleContinue = () => {
     setShowFinishModal(true);
   };
@@ -134,11 +138,48 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
   const toggleMode = () => {
     setIsEmailMode((prevMode) => !prevMode); // Toggle between email and phone mode
   };
+
+
+
+
+
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    setError("");
+
+    const requestData = isEmailMode
+      ? { email }
+      : { phone: selectedCountryCode + phoneNumber };
+
+    try {
+      const response = await axios.post(
+        "http://your-api-url.com/api/register", // Replace with your actual API URL
+        requestData
+      );
+
+      console.log("Success:", response.data);
+
+      if (isEmailMode) {
+        setShowFinishModal(true);
+      } else {
+        setShowConfirmationModal(true);
+      }
+    } catch (err: any) {
+      setError(err.response?.data?.message || "An error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+
+
+
   return (
     <div>
-      <div
-      // Prevent closing modal when clicking inside
-      >
+      <div>
         <div className="">
           {!isEmailMode ? (
             <div>
@@ -197,13 +238,16 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
               Privacy Policy
             </a>
           </p>
+          {error && <p className="text-red-500">{error}</p>}
 
           {isEmailMode ? (
             <button
-              onClick={handleContinue}
+              // onClick={handleContinue}
+              onClick={handleSubmit}
               className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
+              disabled={loading}
             >
-              Continue
+           {loading ? "Processing..." : "Continue"}
             </button>
           ) : (
             <button
@@ -212,7 +256,9 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
             >
               Continue with phone
             </button>
+            
           )}
+          {error && <p className="text-red-500">{error}</p>}
 
           {/* Divider */}
           <div className="flex items-center my-4">
@@ -239,12 +285,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
               onClick={toggleMode}
               className="w-full border border-gray-600 rounded-md py-2 flex items-center space-x-0"
             >
-              {/* <img
-                src={isEmailMode ? phone:email}
-                alt="Toggle Icon"
-                className="h-4 w-7 pl-3"
-              /> */}
-
+             
               {isEmailMode ? (
                 <img src={phone} alt="Toggle Icon" className="h-4 w-7 pl-3" />
               ) : (

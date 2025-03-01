@@ -1,4 +1,5 @@
 
+
 import Home_V1 from "./homes/home-v1/page";
 import Wrapper from "./layout-wrapper/wrapper";
 
@@ -13,6 +14,7 @@ export default function Mainpage() {
     <Wrapper>
       <MetaData meta={metaInformation} />
       <Home_V1 />
+     
     </Wrapper>
   );
 }

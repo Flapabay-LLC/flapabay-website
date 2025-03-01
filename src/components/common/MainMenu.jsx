@@ -107,7 +107,7 @@ const MainMenu = () => {
         
       </li>
       <li className="megamenu_style dropitem">
-        <a className="list-item" href="/contact">
+        <a className="list-item" href="/help-center">
           <span className={topMenu == "help" ? "title menuActive" : "title"}>
             Help Center
           </span>
