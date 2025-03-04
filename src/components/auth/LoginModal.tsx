@@ -5,11 +5,15 @@ import facebook from "../../assets/facebook.png";
 import email from "../../assets/email.png";
 import close from "../../assets/close.png";
 import phone from "../../assets/smartphone.png";
-import FinishSignupModal from "./FinishSignupModal.";
 import ConfirmationModal from "./ConfirmationModal";
 import { Link } from "react-router-dom";
 import EnterCodeModal from "./EnterCodeModal";
-import EmailConfirmationModal from "./EmailConfirmationModal";
+
+
+
+
+
+import axios from "axios";
 // List of countries with phone codes
 const countries = [
   { name: "Afghanistan", code: "+93" },
@@ -96,20 +100,30 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [isEmailMode, setIsEmailMode] = useState(false);
-  const [showFinishModal, setShowFinishModal] = useState(false);
 
-  const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
+  const [showEmailConfirmationModal, setShowEmailConfirmationModal] =
+    useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
-
-
-
+  const [emailError, setEmailError] = useState("");
 
   const handlePhoneContinue = () => {
-    setShowConfirmationModal(true);
+    setShowEmailConfirmationModal(true);
   };
   const handleEmailContinue = () => {
-    setShowEmailConfirmationModal(true);
+    // Validate email input
+    if (!email) {
+      setEmailError("Please enter your email.");
+      return;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    } else {
+      setEmailError(""); // Clear error if valid
+    }
+
+    // Show the password entry modal instead of making an API call here
+    setShowConfirmationModal(true);
   };
 
   if (showEmailConfirmationModal) {
@@ -119,7 +133,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   }
   if (showConfirmationModal) {
     return (
-      <EnterCodeModal onClose={() => setShowConfirmationModal(false)} />
+      <EnterCodeModal
+        onClose={() => setShowConfirmationModal(false)}
+        email={email}
+      />
     );
   }
 
@@ -146,6 +163,17 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const toggleMode = () => {
     setIsEmailMode((prevMode) => !prevMode); // Toggle between email and phone mode
   };
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div>
       <div
@@ -194,11 +222,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="bg-white w-full text-[16px] rounded-md shadow-sm  p-2 sm:text-sm outline-none"
+                  className="bg-white w-full text-[16px] rounded-md shadow-sm p-[12px] sm:text-sm"
                   value={email}
-                  onChange={handleEmailChange}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+              {emailError && (
+                <p className="text-red-500 text-sm mt-1">{emailError}</p>
+              )}
             </div>
           )}
 
@@ -212,14 +243,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
 
           {isEmailMode ? (
             <button
-              onClick={handlePhoneContinue}
+              onClick={handleEmailContinue}
               className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
             >
               Continue
             </button>
           ) : (
             <button
-              onClick={handleEmailContinue}
+              onClick={handlePhoneContinue}
               className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
             >
               Continue with phone

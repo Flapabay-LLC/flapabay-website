@@ -10,4 +10,19 @@ export const guestAtom = atom({
   });
 
 
+
+  export const authAtom = atom(null); // null means not logged in
+  
   export const isModalOpenAtom = atom(false);
+
+
+
+  interface User {
+    fname: string;
+    email: string;
+  }
+  
+  const storedUser = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  
+  export const userAtom = atom<User | null>(storedUser ? JSON.parse(storedUser) : null);
+  
