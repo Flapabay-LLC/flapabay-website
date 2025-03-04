@@ -61,7 +61,7 @@ const MainMenu = () => {
       <li className="visible_list dropitem">
         <a className="list-item" href="#">
           <span className={topMenu == "home" ? "title menuActive" : "title"}>
-            Home
+            Explore
           </span>
          
         </a>
@@ -72,7 +72,7 @@ const MainMenu = () => {
       <li className="megamenu_style dropitem">
         <a className="list-item" href="#">
           <span className={topMenu == "explore" ? "title menuActive" : "title"}>
-            Explore
+            Experiences
           </span>
           {/* <span className="arrow"></span> */}
         </a>
