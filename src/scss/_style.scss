@@ -82,6 +82,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
     --color-dark: #141414;
     --color-white: #fff;
     --faints: #999da3;
+    --color-dark: #000;
 }
 
 /* Mixins */
@@ -280,14 +281,14 @@ li {
     position: relative;
 
     .app-info {
-        background-color: var(--color-dark); /* Default background: dark */
+        background-color: var(--color-white); /* Default background: dark */
         border-radius: 12px;
         padding: 10px 20px 2px;
         width: 210px;
         transition: all 0.4s ease;
 
         &:hover {
-            background-color: var(--color-white) !important;
+            background-color: var(--color-primary) !important;
 
             .app-text,
             .app-title,
@@ -298,26 +299,26 @@ li {
         }
 
         .app-text {
-            color: #bebdbd; /* Default text color */
+            color: #000000; /* Default text color */
 
             &:hover {
-                color: var(--color-faints) !important;
+                color: var(--color-white) !important;
             }
         }
 
         .app-title {
-            color: var(--color-white); /* Default title color */
+            color: var(--color-dark); /* Default title color */
 
             &:hover {
-                color: var(--color-faints) !important;
+                color: var(--color-white) !important;
             }
         }
 
         i {
-            color: var(--color-white); /* Default icon color */
+            color: var(--color-dark); /* Default icon color */
 
             &:hover {
-                color: var(--color-faints) !important;
+                color: var(--color-dark) !important;
             }
         }
 
@@ -2606,15 +2607,9 @@ li {
 .listing-style13 .list-content .ud-btn {
     border-radius: 0;
     position: absolute;
-    right: 30px;
-    top: 30px;
+    
 }
-.search-tbn {
-    border-radius: 50% !important;
-    padding: 11px !important;
-    width: 64px;
-    height: 53px;
-}
+
 @media (max-width: 767.98px) {
     .listing-style13 .list-content .ud-btn {
         position: relative;
@@ -5065,11 +5060,18 @@ section {
 
 .cta-img {
     bottom: 0;
+    width:35rem;
     position: absolute;
 }
-
+.downloadme{
+    font-size: 44px;
+    font-family: "poppins";
+    font-weight: bold;
+    margin-bottom: 2rem;
+    
+}
 .our-cta3 {
-    background-color: #f8f8ff;
+    background-color: var(--color-dark);
 }
 
 .cta-banner5:before {
@@ -5102,11 +5104,11 @@ section {
     width: 128px;
 }
 .cta-style5 .cta-title {
-    color: #0d1c39;
+    color: #ffffff;
     letter-spacing: 0.02em;
 }
 .cta-style5 .cta-text {
-    color: #0d1c39;
+    color: #ffffff;
     font-family: var(--title-font-family);
     font-weight: 400;
 }
@@ -5129,7 +5131,7 @@ section {
 }
 
 .cta-style6 .cta-title {
-    color: #222222;
+    color: #ffffff;
     font-size: 32px;
 }
 .cta-style6 .cta-text {
@@ -6904,7 +6906,7 @@ textarea:focus {
 .btn-light-gray:before,
 .btn-transparent:before,
 .btn-transparent2:before {
-    background-color: var(--color-tetiary);
+    background-color: var(--color-dark);
     content: "";
     height: 100%;
     left: -100%;
@@ -7576,8 +7578,8 @@ header.nav-homepage-style.sticky .btn-transparent2 {
     background-color: var(--color-primary)
 }
 header.nav-homepage-style.sticky .menu-btn:hover {
-    background-color: var(--color-tetiary) !important;
-    border: 1px solid var(--color-tetiary) !important;
+    background-color: var(--color-dark) !important;
+    border: 1px solid var(--color-dark) !important;
     color: var(--color-white) !important;
 }
 header.nav-homepage-style.at-home2,
@@ -10289,7 +10291,7 @@ input:focus-visible {
 }
 
 .text-thm2 {
-    color: var(--color-tetiary);
+    color: var(--color-dark);
 }
 
 .bgc-thm {
@@ -10297,7 +10299,7 @@ input:focus-visible {
 }
 
 .bgc-thm2 {
-    background-color: var(--color-tetiary);
+    background-color: var(--color-dark);
 }
 
 .bgc-f7 {

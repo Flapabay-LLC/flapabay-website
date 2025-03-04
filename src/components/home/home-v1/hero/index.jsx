@@ -12,7 +12,7 @@ import "swiper/css/bundle";
 const Hero = () => {
   return (
     <>
-      <div className="inner-banner-style1 text-center">
+      <div className="text-center inner-banner-style1">
         
         <FilterWithProperties/>
         

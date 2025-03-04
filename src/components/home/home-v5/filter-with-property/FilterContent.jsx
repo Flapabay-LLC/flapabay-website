@@ -44,7 +44,7 @@ const DatesTab = () => {
 
   return (
     <div className="text-center min-h-[300px]">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         {/* Back Arrow - Only enabled if not at current month */}
         <button
           onClick={goToPreviousMonth}
@@ -72,7 +72,7 @@ const DatesTab = () => {
         {/* Next Arrow */}
         <button
           onClick={goToNextMonth}
-          className="p-2 rounded-full bg-gray-200 hover:bg-gray-300"
+          className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
         >
           <FiArrowRight size={24} />
         </button>
@@ -97,7 +97,7 @@ const CalendarMonth = ({ month, year, selectedDate, onDateClick }) => {
         {new Date(year, month).toLocaleString("en-US", { month: "long" })}{" "}
         {year}
       </h3>
-      <div className="grid grid-cols-7 gap-1 text-gray-600 text-sm mt-2">
+      <div className="grid grid-cols-7 gap-1 mt-2 text-sm text-gray-600">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
           <div key={day} className="font-medium">
             {day}
@@ -172,7 +172,7 @@ const DatesTabtwo = () => {
 
   return (
     <div className="text-center min-h-[300px]">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         {/* Back Arrow - Only enabled if not at current month */}
         <button
           onClick={goToPreviousMonth}
@@ -201,7 +201,7 @@ const DatesTabtwo = () => {
         {/* Next Arrow */}
         <button
           onClick={goToNextMonth}
-          className="p-2 rounded-full bg-gray-200 hover:bg-gray-300"
+          className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
         >
           <FiArrowRight size={24} />
         </button>
@@ -231,7 +231,7 @@ const CalendarMonthtwo = ({ month, year, startDate, endDate, onDateClick }) => {
         {new Date(year, month).toLocaleString("en-US", { month: "long" })}{" "}
         {year}
       </h3>
-      <div className="grid grid-cols-7 gap-1 text-gray-600 text-sm mt-2">
+      <div className="grid grid-cols-7 gap-1 mt-2 text-sm text-gray-600">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
           <div key={day} className="font-medium">
             {day}
@@ -284,10 +284,10 @@ const MonthsTab = () => {
 
   return (
     <div className="flex flex-col min-h-[300px] items-center">
-      <h2 className="text-lg font-semibold mb-4">When’s your trip?</h2>
-      <div className="relative w-40 h-40 flex items-center justify-center">
+      <h2 className="mb-4 text-lg font-semibold">When’s your trip?</h2>
+      <div className="relative flex items-center justify-center w-40 h-40">
         {/* Circular Progress */}
-        <div className="absolute w-full h-full rounded-full bg-gray-200" />
+        <div className="absolute w-full h-full bg-gray-200 rounded-full" />
         <div
           className="absolute w-full h-full rounded-full"
           style={{
@@ -297,13 +297,13 @@ const MonthsTab = () => {
           }}
         />
         {/* Centered Value */}
-        <div className="absolute flex flex-col items-center justify-center bg-white w-24 h-24 rounded-full shadow-md">
+        <div className="absolute flex flex-col items-center justify-center w-24 h-24 bg-white rounded-full shadow-md">
           <span className="text-2xl font-bold">{selectedMonths}</span>
           <span className="text-sm">months</span>
         </div>
       </div>
       {/* Controls */}
-      <div className="flex space-x-4 mt-4">
+      <div className="flex mt-4 space-x-4">
         <button
           className="p-2 text-lg bg-gray-300 rounded-full disabled:opacity-50"
           onClick={() => handleChange(selectedMonths - 1)}
@@ -370,7 +370,7 @@ const FlexibleTab = () => {
 
   return (
     <div className="text-center min-h-[300px]">
-      <h2 className="text-lg font-semibold mb-4">Stay for a week</h2>
+      <h2 className="mb-4 text-lg font-semibold">Stay for a week</h2>
       <div className="flex justify-center space-x-2">
         {options.map((option) => (
           <button
@@ -385,9 +385,9 @@ const FlexibleTab = () => {
         ))}
       </div>
 
-      <h2 className="text-lg font-semibold mt-6 mb-4">Go anytime</h2>
+      <h2 className="mt-6 mb-4 text-lg font-semibold">Go anytime</h2>
       <div className="flex items-center space-x-2">
-        <button className="p-2 rounded-full bg-gray-200" onClick={handlePrev}>
+        <button className="p-2 bg-gray-200 rounded-full" onClick={handlePrev}>
           <IoIosArrowBack size={24} />
         </button>
         <div className="flex space-x-4 overflow-hidden">
@@ -405,7 +405,7 @@ const FlexibleTab = () => {
             </button>
           ))}
         </div>
-        <button className="p-2 rounded-full bg-gray-200" onClick={handleNext}>
+        <button className="p-2 bg-gray-200 rounded-full" onClick={handleNext}>
           <IoIosArrowForward size={24} />
         </button>
       </div>
@@ -567,8 +567,8 @@ const FilterContent = () => {
   }, [CalendertwoModal]);
 
   return (
-    <div className="advance-style4 at-home10 mt-100 mt50-lg mb10 mx-auto animate-up-2">
-      <ul className="nav nav-tabs p-0 m-0">
+    <div className="mx-auto advance-style4 at-home10 mt-100 mt50-lg mb10 animate-up-2">
+      <ul className="p-0 m-0 nav nav-tabs">
         {tabs.map((tab) => (
           <li className="nav-item" key={tab.id}>
             <button
@@ -593,7 +593,7 @@ const FilterContent = () => {
                   <div className="advance-content-style3 at-home5">
                     <div className="row align-items-center">
                       <div className="col-6 col-md-6 col-xl-4 bdrr1 bdrrn-sm">
-                        <label className="form-label fz16 mb-1">
+                        <label className="mb-1 form-label fz16">
                           Where to ?
                         </label>
                         <div className="advance-search-field position-relative">
@@ -619,7 +619,7 @@ const FilterContent = () => {
                       </div>
 
                       <div className="col-md-2 col-xl-3 bdrr1 bdrrn-sm px20 pl15-sm hidate">
-                        <div className="mt-3 mt-md-0 px-0 cursor-pointer">
+                        <div className="px-0 mt-3 cursor-pointer mt-md-0">
                           <div
                             className="bootselect-multiselect"
                             onClick={() => setCalendertwoModal(true)}
@@ -630,12 +630,12 @@ const FilterContent = () => {
                         </div>
                       </div>
 
-                      <div className="col-md-4 col-xl-3 bdrr1 bdrrn-sm px20 pl15-sm hidate relative">
+                      <div className="relative col-md-4 col-xl-3 bdrr1 bdrrn-sm px20 pl15-sm hidate">
                         <div className="mt-3 mt-md-0">
                           <div className="dropdown-lists">
                             <label className="fz13 ">Guests</label>
                             <div
-                              className="btn open-btn text-start dropdown-toggle w-full px-1 py-0"
+                              className="w-full px-1 py-0 btn open-btn text-start dropdown-toggle"
                               onClick={() =>
                                 setIsGuestModalOpen(!isGuestModalOpen)
                               }
@@ -651,7 +651,7 @@ const FilterContent = () => {
                       </div>
 
                       <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm">
-                        <div className="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+                        <div className="mt-3 d-flex align-items-center justify-content-start justify-content-md-center mt-md-0">
                           <button
                             className="advance-search-btn"
                             type="button"
@@ -660,6 +660,7 @@ const FilterContent = () => {
                           >
                             <span className="flaticon-settings" /> Filters
                           </button>
+                          
                           <button
                             className="ud-btn btn-thm ms-2 search-tbn"
                             type="button"
@@ -693,7 +694,7 @@ const FilterContent = () => {
                             <div className="col-8 col-md-4 col-xl-3 bdrr1 bdrrn-sm">
                               <label
                                 htmlFor="searchInput"
-                                className="form-label fz16 mb-1"
+                                className="mb-1 form-label fz16"
                               >
                                 Where to?
                               </label>
@@ -722,7 +723,7 @@ const FilterContent = () => {
                                 width: 55,
                                 height: 55,
                               }}
-                              className="ud-btn  btn-thm ms-2 search-tbn search-btn"
+                              className="ud-btn btn-thm ms-2 search-tbn search-btn"
                               type="button"
                               onClick={() => navigate("/grid-full-3-col")}
                             >
@@ -733,7 +734,7 @@ const FilterContent = () => {
                       </div>
 
                       {/* Filter Section */}
-                      <div className="col-4 col-md-4 d-flex justify-content-md-end mt-3 mt-md-0">
+                      <div className="mt-3 col-4 col-md-4 d-flex justify-content-md-end mt-md-0">
                         <button
                           style={{
                             position: "fixed",
@@ -768,7 +769,7 @@ const FilterContent = () => {
                 <div className="advance-content-style3 at-home5">
                   <div className="row align-items-center">
                     <div className="col-6 col-md-6 col-xl-4 bdrr1 bdrrn-sm">
-                      <label className="form-label fz16 mb-1">Where to ?</label>
+                      <label className="mb-1 form-label fz16">Where to ?</label>
                       <div className="advance-search-field position-relative">
                         <form className="form-search position-relative">
                           <div className="box-search">
@@ -792,7 +793,7 @@ const FilterContent = () => {
                     </div>
 
                     <div className="col-md-2 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate">
-                      <div className="mt-3 mt-md-0 px-0 cursor-pointer">
+                      <div className="px-0 mt-3 cursor-pointer mt-md-0">
                         <div
                           className="bootselect-multiselect"
                           onClick={() => setCalenderModal(true)}
@@ -804,7 +805,7 @@ const FilterContent = () => {
                     </div>
 
                     <div className="col-md-2 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate">
-                      <div className="mt-3 mt-md-0 cursor-pointer">
+                      <div className="mt-3 cursor-pointer mt-md-0">
                         <div
                           className="bootselect-multiselect"
                           onClick={() => setCalenderModal(true)}
@@ -818,9 +819,9 @@ const FilterContent = () => {
                     <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm hidate">
                       <div className="mt-3 mt-md-0">
                         <div className="dropdown-lists">
-                          <label className="fz13 mb-1">Guests</label>
+                          <label className="mb-1 fz13">Guests</label>
                           <div
-                            className="btn open-btn text-start dropdown-toggle w-full px-1 py-0"
+                            className="w-full px-1 py-0 btn open-btn text-start dropdown-toggle"
                             onClick={() =>
                               setIsGuestModalOpen(!isGuestModalOpen)
                             }
@@ -836,7 +837,7 @@ const FilterContent = () => {
                     </div>
 
                     <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm">
-                      <div className="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+                      <div className="mt-3 d-flex align-items-center justify-content-start justify-content-md-start mt-md-0">
                         <button
                           className="advance-search-btn"
                           type="button"
@@ -844,9 +845,10 @@ const FilterContent = () => {
                           data-bs-target="#advanceSeachModal"
                         >
                           <span className="flaticon-settings" /> Filters
-                        </button>
+                        </button>&nbsp;
+                        
                         <button
-                          className="ud-btn btn-thm ms-2 search-tbn"
+                          className="ud-btn btn-thm ms-2 search-tbn absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#FFC500] text-white p-2 rounded-full"
                           type="button"
                           onClick={() => navigate("/grid-full-3-col")}
                         >
@@ -878,7 +880,7 @@ const FilterContent = () => {
                           <div className="col-8 col-md-4 col-xl-3 bdrr1 bdrrn-sm">
                             <label
                               htmlFor="searchInput"
-                              className="form-label fz16 mb-1"
+                              className="mb-1 form-label fz16"
                             >
                               Where to?
                             </label>
@@ -907,7 +909,7 @@ const FilterContent = () => {
                               width: 55,
                               height: 55,
                             }}
-                            className="ud-btn  btn-thm ms-2 search-tbn search-btn"
+                            className="ud-btn btn-thm ms-2 search-tbn search-btn"
                             type="button"
                             onClick={() => navigate("/grid-full-3-col")}
                           >
@@ -918,7 +920,7 @@ const FilterContent = () => {
                     </div>
 
                     {/* Filter Section */}
-                    <div className="col-4 col-md-4 d-flex justify-content-md-end mt-3 mt-md-0">
+                    <div className="mt-3 col-4 col-md-4 d-flex justify-content-md-end mt-md-0">
                       <button
                         style={{
                           position: "fixed",
@@ -947,10 +949,10 @@ const FilterContent = () => {
       {isModalOpen && (
         <div
           ref={isModalOpenRef}
-          className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg p-4 z-50"
+          className="absolute left-0 z-50 p-4 mt-2 bg-white rounded-lg shadow-lg top-full"
         >
           {/* Recent Searches */}
-          <h3 className="text-sm font-semibold  text-left text-gray-600">
+          <h3 className="text-sm font-semibold text-left text-gray-600">
             Recent searches
           </h3>
           <div
@@ -975,14 +977,14 @@ const FilterContent = () => {
           </div>
 
           {/* Suggested Destinations */}
-          <h3 className="text-sm font-semibold text-gray-600 mt-4 text-left">
+          <h3 className="mt-4 text-sm font-semibold text-left text-gray-600">
             Suggested destinations
           </h3>
           <ul className="mt-2 space-y-3">
             {suggestions.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center gap-3 cursor-pointer hover:bg-gray-100 p-2 rounded-lg"
+                className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100"
                 onClick={() => handleSelectSuggestion(item.name)}
               >
                 <span className="text-xl">{item.icon}</span>
@@ -1001,7 +1003,7 @@ const FilterContent = () => {
           className="absolute top-28 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-2xl shadow-lg w-[700px] z-50"
         >
           {/* Tabs */}
-          <div className="flex justify-center space-x-4 border-b pb-2">
+          <div className="flex justify-center pb-2 space-x-4 border-b">
             {["dates", "months", "flexible"].map((tab) => (
               <button
                 key={tab}
@@ -1033,7 +1035,7 @@ const FilterContent = () => {
           className="absolute top-28 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-2xl shadow-lg w-[700px] z-50"
         >
           {/* Tabs */}
-          <div className="flex justify-center space-x-4 border-b pb-2">
+          <div className="flex justify-center pb-2 space-x-4 border-b">
             {["dates", "months", "flexible"].map((tab) => (
               <button
                 key={tab}
@@ -1063,12 +1065,12 @@ const FilterContent = () => {
       {isGuestModalOpen && (
         <div
           ref={guestModalRef}
-          className="absolute  top-full mt-1 bg-white shadow-lg rounded-lg p-4 z-50 w-full border"
+          className="absolute z-50 w-full p-4 mt-1 bg-white border rounded-lg shadow-lg top-full"
         >
           {["adults", "children", "infants", "pets"].map((type, index) => (
             <div
               key={index}
-              className="flex text-left justify-between items-center border-b py-2"
+              className="flex items-center justify-between py-2 text-left border-b"
             >
               <div>
                 <p className="font-medium">

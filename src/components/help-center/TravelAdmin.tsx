@@ -4,9 +4,9 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 const TravelAdmin = () => {
   return (
     <>
-      <div className="mt-6 mx-auto w-full px-2 max-w-4xl">
-        <h2 className="text-2xl font-medium mb-4">Guides for getting started</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="w-full max-w-6xl px-2 mx-auto mt-6">
+        <h2 className="mb-4 text-2xl font-medium">Guides for getting started</h2>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           <div>
             <img
               src="https://images.pexels.com/photos/1535244/pexels-photo-1535244.jpeg?cs=srgb&dl=pexels-hazardos-1535244.jpg&fm=jpg"
@@ -43,10 +43,10 @@ const TravelAdmin = () => {
           </div>
         </div>
 
-        <h2 className="text-2xl font-medium pt-6 pb-2">Top articles</h2>
-        <div className="grid grid-cols-2 pb-10 gap-4 text-sm">
-          <div className="border-b pb-3 border-gray-300">
-            <a href="#" className=" underline font-medium">
+        <h2 className="pt-6 pb-2 text-2xl font-medium">Top articles</h2>
+        <div className="grid grid-cols-2 gap-4 pb-10 text-sm">
+          <div className="pb-3 border-b border-gray-300">
+            <a href="#" className="font-medium underline ">
               About Airbnb for Work
             </a>
             <p>
@@ -54,8 +54,8 @@ const TravelAdmin = () => {
               for Work, which puts a...
             </p>
           </div>
-          <div className="border-b pb-3 border-gray-300">
-            <a href="#" className=" underline font-medium">
+          <div className="pb-3 border-b border-gray-300">
+            <a href="#" className="font-medium underline ">
               Sign your company up for Airbnb for Work
             </a>
             <p>
@@ -63,8 +63,8 @@ const TravelAdmin = () => {
               travel, with access to....
             </p>
           </div>
-          <div className="border-b pb-3 border-gray-300">
-            <a href="#" className=" underline font-medium">
+          <div className="pb-3 border-b border-gray-300">
+            <a href="#" className="font-medium underline ">
               Access and get to know your Airbnb for Work dashboard
             </a>
             <p>
@@ -72,8 +72,8 @@ const TravelAdmin = () => {
               convenient dashboard to help...
             </p>
           </div>
-          <div className="border-b pb-3 border-gray-300">
-            <a href="#" className=" underline font-medium">
+          <div className="pb-3 border-b border-gray-300">
+            <a href="#" className="font-medium underline ">
               Invite employees to join Airbnb for Work
             </a>
             <p>
@@ -81,8 +81,8 @@ const TravelAdmin = () => {
               account, you can invite...
             </p>
           </div>
-          <div className="border-b pb-3 border-gray-300">
-            <a href="#" className=" underline font-medium">
+          <div className="pb-3 border-b border-gray-300">
+            <a href="#" className="font-medium underline ">
               Set up a company credit card for Airbnb for Work
             </a>
             <p>
@@ -90,8 +90,8 @@ const TravelAdmin = () => {
               and charge business...
             </p>
           </div>
-          <div className="border-b pb-3 border-gray-300">
-            <a href="#" className=" underline font-medium">
+          <div className="pb-3 border-b border-gray-300">
+            <a href="#" className="font-medium underline ">
               Print or download receipts for Airbnb for Work business trips
             </a>
             <p>
@@ -102,50 +102,50 @@ const TravelAdmin = () => {
         </div>
       </div>
 
-      <div className="bg-black text-white mt-10 p-6">
-        <h2 className="text-2xl font-medium mb-4 text-white max-w-4xl mx-auto">
+      <div className="p-6 mt-10 text-white bg-black">
+        <h2 className="max-w-4xl mx-auto mb-4 text-2xl font-medium text-white">
           Explore more
         </h2>
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-          <div className="bg-gray-800 pb-2 rounded-lg">
+        <div className="grid max-w-4xl gap-4 mx-auto lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2">
+          <div className="pb-2 bg-gray-800 rounded-lg">
             <img
               src="https://images.pexels.com/photos/1535244/pexels-photo-1535244.jpeg?cs=srgb&dl=pexels-hazardos-1535244.jpg&fm=jpg"
               alt="Community policies"
               className="rounded-lg"
             />
-            <p className="mt-2 font-medium text-white pl-2">
+            <p className="pl-2 mt-2 font-medium text-white">
               Our community policies
             </p>
-            <p className="text-sm text-gray-400 pl-2">
+            <p className="pl-2 text-sm text-gray-400">
               How we build a foundation of trust.
             </p>
           </div>
-          <div className="bg-gray-800 pb-2 rounded-lg">
+          <div className="pb-2 bg-gray-800 rounded-lg">
             <img
               src="https://images.pexels.com/photos/1535244/pexels-photo-1535244.jpeg?cs=srgb&dl=pexels-hazardos-1535244.jpg&fm=jpg"
               alt="Safety tips"
               className="rounded-lg"
             />
-            <p className="mt-2 font-medium text-white pl-2">
+            <p className="pl-2 mt-2 font-medium text-white">
               Safety tips and guidelines
             </p>
-            <p className="text-sm text-gray-400 pl-2">
+            <p className="pl-2 text-sm text-gray-400">
               Resources to help travelers stay safe.
             </p>
           </div>
-          <div className=" p-2 rounded-lg my-auto">
-            <h2 className=" text-white text-lg font-medium">
+          <div className="p-2 my-auto rounded-lg ">
+            <h2 className="text-lg font-medium text-white ">
               Need to get in touch?
             </h2>
-            <p className=" text-white">
+            <p className="text-white ">
               We’ll start with some questions and get you to the right place.
             </p>
-            <button className="mt-2 bg-white text-black w-full px-4 py-2 rounded-lg font-medium">
+            <button className="w-full px-4 py-2 mt-2 font-medium text-black bg-white rounded-lg">
               Contact us
             </button>
-            <p className=" text-white pt-2">
+            <p className="pt-2 text-white ">
               You can also{" "}
-              <span className=" underline font-medium">give us feedback.</span>{" "}
+              <span className="font-medium underline ">give us feedback.</span>{" "}
             </p>
           </div>
         </div>

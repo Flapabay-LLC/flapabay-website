@@ -60,7 +60,7 @@ const AdvanceFilterModal = () => {
         </div>
         {/* End modal-header */}
 
-        <div className="modal-body pb-0">
+        <div className="pb-0 modal-body">
           <div className="row">
             <div className="col-lg-12">
               <div className="widget-wrapper">
@@ -195,6 +195,7 @@ const AdvanceFilterModal = () => {
             <u>Reset all filters</u>
           </button>
           <div className="btn-area">
+            
             <button data-bs-dismiss="modal" type="submit" className="ud-btn btn-thm" onClick={() => navigate("/map-v1")} >
               <span className="align-text-top pr10" />
               <SearchNormal /> {' '} Search

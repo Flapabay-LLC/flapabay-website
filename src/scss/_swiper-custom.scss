@@ -22,7 +22,7 @@
 .arrowY-center-position {
     position: absolute;
     width: 100%;
-    top: 50%;
+    top: 30%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
@@ -30,11 +30,11 @@
     z-index: 9;
 
     .swiper_button {
-        background-color: #ffffff;
-        box-shadow: 0px 10px 35px rgba(5, 16, 54, 0.1);
+        background-color: #ffc500;
+        // box-shadow: 0px 10px 35px #ffc40081;
         border: none;
         border-radius: 15px;
-        color: #051036;
+        color: #ffffff;
         display: inline-block;
         height: 50px;
         line-height: 50px;
@@ -45,7 +45,7 @@
             color: #ffffff;
         }
         &.swiper-button-disabled {
-            opacity: 0.5;
+            opacity: 1;
             pointer-events: none;
         }
         &._prev {
@@ -64,11 +64,11 @@
 
 .arrow-with-border {
     .swiper_button {
-        background-color: #ffffff;
-        box-shadow: 0px 10px 35px rgba(5, 16, 54, 0.1);
-        border: 1px solid #181a20;
+        background-color: #ffc500;
+        box-shadow: 0px 10px 35px #ffc40073;
+        border: 1px solid #ffc500;
         border-radius: 15px;
-        color: #051036;
+        color: #000000;
         display: inline-block;
         height: 50px;
         line-height: 50px;
