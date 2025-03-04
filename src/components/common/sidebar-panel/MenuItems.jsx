@@ -13,7 +13,7 @@ const MenuItems = () => {
     <ul className="navbar-nav">
       {menuItems.map((item) => (
         <li className="nav-item" key={item.id}>
-          <a className="nav-link" href="#" role="button">
+          <a className="nav -link" href="#" role="button">
             {item.title}
           </a>
         </li>
