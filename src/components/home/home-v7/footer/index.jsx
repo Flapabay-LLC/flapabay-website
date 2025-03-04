@@ -1,10 +1,9 @@
-
-import { Link } from "react-router-dom";
-import ContactMeta from "./ContactMeta";
 import AppWidget from "./AppWidget";
-import Subscribe from "./Subscribe";
-import MenuWidget from "./MenuWidget";
+import ContactMeta from "./ContactMeta";
 import Copyright from "./Copyright";
+import { Link } from "react-router-dom";
+import MenuWidget from "./MenuWidget";
+import Subscribe from "./Subscribe";
 
 const Footer = () => {
   return (
@@ -17,7 +16,7 @@ const Footer = () => {
                 <img
                  
                   className="mb40"
-                  src="/images/header-logo2.svg"
+                  src="/images/logo.svg"
                   alt=""
                 />
               </Link>

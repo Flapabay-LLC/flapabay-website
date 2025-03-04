@@ -1,10 +1,10 @@
-import MainMenu from "@/components/common/MainMenu";
-import SidebarPanel from "@/components/common/sidebar-panel";
-
 import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useAtom } from "jotai";
+
+import MainMenu from "@/components/common/MainMenu";
+import SidebarPanel from "@/components/common/sidebar-panel";
 import { modeAtom } from "../../context/atom";
+import { useAtom } from "jotai";
 
 const DashboardHeader = () => {
   const [isHosting, setIsHosting] = useAtom(modeAtom); // Get the current mode and setter function
@@ -86,7 +86,7 @@ const DashboardHeader = () => {
                 <div className="text-center text-lg-start d-flex align-items-center">
                   <div className="dashboard_header_logo position-relative me-2 me-xl-5">
                     <Link className="logo" to="/">
-                      <img src="/images/header-logo2.svg" alt="Header Logo" />
+                      <img src="/images/logo.svg" alt="Header Logo" />
                     </Link>
                   </div>
                   {/* End Logo */}

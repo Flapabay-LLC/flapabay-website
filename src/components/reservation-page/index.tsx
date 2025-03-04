@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function ReservationPage() {
   return (
@@ -8,7 +8,7 @@ export default function ReservationPage() {
 <header className="w-full bg-white z-50 fixed shadow-sm top-0 left-0 flex justify-between items-center p-2 px-4">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <Link to={"/payment-page"}>

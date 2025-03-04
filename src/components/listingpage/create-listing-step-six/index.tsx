@@ -1,7 +1,8 @@
-import React from "react";
-import { useAtom, atom } from "jotai";
-import { FiPlus, FiMinus } from "react-icons/fi";
+import { FiMinus, FiPlus } from "react-icons/fi";
+import { atom, useAtom } from "jotai";
+
 import { Link } from "react-router-dom";
+import React from "react";
 
 // Define atoms
 const guestsAtom = atom(1);
@@ -24,7 +25,7 @@ const CreateListingStepSix = () => {
       <header className="w-full fixed top-0 bg-white left-0 flex justify-between items-center p-4 z-50">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <button className="text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">

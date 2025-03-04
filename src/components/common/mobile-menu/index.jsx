@@ -28,7 +28,7 @@ const MobileMenu = () => {
               <Link className="mobile_logo" to="/">
                 <img
                  
-                  src="/images/header-logo2.svg"
+                  src="/images/logo.svg"
                   alt="logo"
                 />
               </Link>
@@ -75,7 +75,7 @@ const MobileMenu = () => {
                 <div className="row pt30 pb30 bdrt1">
                   <div className="col-auto">
                     <div className="social-style-sidebar d-flex align-items-center pl30">
-                      <h6 className="me-4 mb-0">Follow us</h6>
+                      <h6 className="mb-0 me-4">Follow us</h6>
                       <Social />
                     </div>
                   </div>

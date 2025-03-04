@@ -1,25 +1,26 @@
+import { AiOutlineClose, AiOutlineDown, AiOutlineMenu, AiOutlineUp } from "react-icons/ai";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { AiOutlineDown, AiOutlineUp, AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+
+import AboutYou from "./AboutYou";
+import AddLocation from "./AddLocation";
 import Basic from "./Basics";
+import BookingSettings from "./BookingSettings";
+import BringItems from "./BringItems";
+import CancellationPolicyPage from "./CancellationPolicyPage";
+import Discounts from "./Discounts";
+import ExperienceForm from "./ExperienceForm";
+import ExperienceName from "./ExperienceName";
+import GeneralAvailability from "./GeneralAvailability";
+import GroupSizeSelector from "./GroupSizeSelector";
+import GuestPricing from "./GuestPricing";
+import JustPage from "./JustPage";
+import { Link } from "react-router-dom";
+import PhotoUpload from "./PhotoUpload";
+import ProvideDetails from "./ProvideDetails";
 import Themes from "./Themes";
+import VerifyPage from "./VerifyPage";
 import WhatWereLookingFor from "./WhatWereLookingFor";
 import WhatweDo from "./WhatweDo";
-import AboutYou from "./AboutYou";
-import ProvideDetails from "./ProvideDetails";
-import BringItems from "./BringItems";
-import ExperienceName from "./ExperienceName";
-import PhotoUpload from "./PhotoUpload";
-import GroupSizeSelector from "./GroupSizeSelector";
-import GeneralAvailability from "./GeneralAvailability";
-import GuestPricing from "./GuestPricing";
-import Discounts from "./Discounts";
-import BookingSettings from "./BookingSettings";
-import CancellationPolicyPage from "./CancellationPolicyPage";
-import VerifyPage from "./VerifyPage";
-import JustPage from "./JustPage";
-import ExperienceForm from "./ExperienceForm";
-import AddLocation from "./AddLocation";
 
 const SubmitExperiencePage: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -111,7 +112,7 @@ const SubmitExperiencePage: React.FC = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link className="w-24" to="/">
-              <img src="/images/header-logo2.svg" alt="Header Logo" />
+              <img src="/images/logo.svg" alt="Header Logo" />
             </Link>
 
             {/* Save & Exit Button */}

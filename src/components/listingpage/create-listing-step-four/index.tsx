@@ -1,27 +1,28 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import {
-  FaHome,
-  FaBuilding,
-  FaFire,
   FaBed,
-  FaShip,
-  FaUser,
-  FaCaravan,
-  FaHouseUser,
-  FaFortAwesome,
-  FaMountain,
   FaBox,
-  FaWater,
-  FaIgloo,
-  FaDungeon,
-  FaGlobeAmericas,
-  FaTractor,
+  FaBuilding,
+  FaCaravan,
   FaDoorOpen,
+  FaDungeon,
+  FaFire,
+  FaFortAwesome,
+  FaGlobeAmericas,
+  FaHome,
   FaHotel,
+  FaHouseUser,
+  FaIgloo,
+  FaMountain,
+  FaShip,
+  FaTractor,
+  FaUser,
+  FaWater,
 } from "react-icons/fa";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const CreateListingStepFour = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null); // Track selected option
@@ -48,7 +49,7 @@ const CreateListingStepFour = () => {
       <header className="w-full fixed top-0 bg-white left-0 flex justify-between items-center p-4 z-50">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <button className="text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">

@@ -1,7 +1,7 @@
+import Map, { Marker, NavigationControl } from "react-map-gl";
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
-import Map, { Marker, NavigationControl } from "react-map-gl";
 import debounce from "lodash.debounce";
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoicmFqcG9vdGZhaGFkNzcxIiwiYSI6ImNtNHdmeHR5bTBlcTUyaXA3aW02bXZpMWMifQ.V4RKMEW-u84e5foK0FpBLA" || "";
@@ -63,7 +63,7 @@ const CreateListingStepFive = () => {
       <header className="w-full fixed top-0 bg-white left-0 flex justify-between items-center px-4 pt-2 z-50">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <button className="text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">

@@ -1,11 +1,9 @@
-
-
-import MainMenu from "@/components/common/MainMenu";
-import SidebarPanel from "@/components/common/sidebar-panel";
-import LoginSignupModal from "@/components/common/login-signup-modal";
+import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import LoginSignupModal from "@/components/common/login-signup-modal";
+import MainMenu from "@/components/common/MainMenu";
+import SidebarPanel from "@/components/common/sidebar-panel";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
@@ -48,7 +46,7 @@ const Header = () => {
                     <Link className="header-logo logo2" to="/">
                       <img
                        
-                        src="/images/header-logo2.svg"
+                        src="/images/logo.svg"
                         alt="Header Logo"
                       />
                     </Link>

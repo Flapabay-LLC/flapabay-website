@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
-  FaTable,
   FaCalendarAlt,
-  FaCreditCard,
   FaChartLine,
+  FaCreditCard,
+  FaTable,
 } from "react-icons/fa";
+import React, { useState } from "react";
+
+import { Link } from "react-router-dom";
 
 const DemoPage = () => {
   const [showAllFAQs, setShowAllFAQs] = useState(false); // State to manage FAQ visibility
@@ -62,7 +63,7 @@ const DemoPage = () => {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           {/* Logo */}
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
 
           {/* Let's Go Button */}

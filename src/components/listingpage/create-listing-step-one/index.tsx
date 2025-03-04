@@ -1,6 +1,7 @@
-import React from "react";
-import { FaTimes, FaBed, FaImages, FaCheckCircle } from "react-icons/fa";
+import { FaBed, FaCheckCircle, FaImages, FaTimes } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
+import React from "react";
 
 const CreateListingSteps = () => {
   return (
@@ -11,7 +12,7 @@ const CreateListingSteps = () => {
         <Link className="header-logo logo1" to="/">
                       <img
                        
-                        src="/images/header-logo2.svg"
+                        src="/images/logo.svg"
                         alt="Header Logo"
                       />
                     </Link>

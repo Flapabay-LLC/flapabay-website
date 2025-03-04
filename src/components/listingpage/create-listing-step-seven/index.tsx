@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const CreateListingStepSeven = () => {
   const [imageVisible, setImageVisible] = useState(true);
@@ -14,7 +15,7 @@ const CreateListingStepSeven = () => {
              <Link className="header-logo logo1" to="/">
                            <img
                             
-                             src="/images/header-logo2.svg"
+                             src="/images/logo.svg"
                              alt="Header Logo"
                            />
                          </Link>

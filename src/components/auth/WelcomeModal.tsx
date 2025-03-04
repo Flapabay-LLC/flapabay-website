@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import ProfilePhotoModal from "./ProfilePhotoModal"; // Import the next modal
 
@@ -21,7 +22,7 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ onClose }) => {
           <div className="text-center">
             <div className="text-2xl font-bold text-black">
               <Link className="header-logo logo1 flex justify-center pt-2 pb-2 items-center" to="/">
-                <img src="/images/header-logo2.svg" alt="Header Logo" />
+                <img src="/images/logo.svg" alt="Header Logo" />
               </Link>
             </div>
             <h2 className="text-lg font-semibold">Welcome to Flapabay</h2>

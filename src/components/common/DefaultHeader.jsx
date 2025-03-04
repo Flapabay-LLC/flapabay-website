@@ -1,11 +1,13 @@
+import React, { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
+import LoginSignupModal from "@/components/common/login-signup-modal";
 import MainMenu from "@/components/common/MainMenu";
 import SidebarPanel from "@/components/common/sidebar-panel";
-import LoginSignupModal from "@/components/common/login-signup-modal";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Unsubscribe from "@/components/common/wizards-modal/Unsubscribe";
-import { useAtom } from "jotai";
 import { modeAtom } from "../../context/atom";
+import { useAtom } from "jotai";
+
 const DefaultHeader = () => {
   const [navbar, setNavbar] = useState(true);
 
@@ -32,14 +34,14 @@ const DefaultHeader = () => {
                     <Link className="header-logo logo1" to="/">
                       <img
                        
-                        src="/images/header-logo2.svg"
+                        src="/images/logo.svg"
                         alt="Header Logo"
                       />
                     </Link>
                     <Link className="header-logo logo2" to="/">
                       <img
                       
-                        src="/images/header-logo2.svg"
+                        src="/images/logo.svg"
                         alt="Header Logo"
                       />
                     </Link>

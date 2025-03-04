@@ -1,6 +1,7 @@
-import React from "react";
-import { FaHome, FaPlusSquare, FaClone, FaTimes } from "react-icons/fa";
+import { FaClone, FaHome, FaPlusSquare, FaTimes } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
+import React from "react";
 
 const CreateListing = () => {
   return (
@@ -11,7 +12,7 @@ const CreateListing = () => {
         <Link className="header-logo logo1" to="/">
                       <img
                        
-                        src="/images/header-logo2.svg"
+                        src="/images/logo.svg"
                         alt="Header Logo"
                       />
                     </Link>

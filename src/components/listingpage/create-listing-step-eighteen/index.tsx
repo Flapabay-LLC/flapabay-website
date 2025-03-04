@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { FiArrowLeft, FiCheck } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const CreateListingStepEighteen = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -19,7 +20,7 @@ const CreateListingStepEighteen = () => {
       <header className="w-full fixed top-0 left-0 bg-white flex justify-between items-center p-4">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <button className="text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">

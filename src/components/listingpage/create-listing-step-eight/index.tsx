@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { useAtom, atom } from "jotai";
-import { FiPlus, FiMinus } from "react-icons/fi";
-import { Link } from "react-router-dom";
-
 import {
-  FaWifi,
-  FaTv,
-  FaSwimmingPool,
-  FaFire,
-  FaParking,
   FaBath,
-  FaUtensils,
-  FaLaptop,
-  FaSnowflake,
-  FaCouch,
-  FaTableTennis,
-  FaGuitar,
-  FaDumbbell,
-  FaSkiing,
-  FaUmbrellaBeach,
-  FaShower,
-  FaFirstAid,
   FaBell,
+  FaCouch,
+  FaDumbbell,
+  FaFire,
   FaFireExtinguisher,
+  FaFirstAid,
+  FaGuitar,
+  FaLaptop,
+  FaParking,
+  FaShower,
+  FaSkiing,
+  FaSnowflake,
+  FaSwimmingPool,
+  FaTableTennis,
+  FaTv,
+  FaUmbrellaBeach,
+  FaUtensils,
+  FaWifi,
 } from "react-icons/fa";
+import { FiMinus, FiPlus } from "react-icons/fi";
+import React, { useState } from "react";
+import { atom, useAtom } from "jotai";
+
+import { Link } from "react-router-dom";
 
 const guestFavorites = [
   { name: "Wifi", icon: <FaWifi /> },
@@ -81,7 +81,7 @@ const CreateListingStepEight = () => {
       <header className="w-full fixed top-0 bg-white left-0 flex justify-between items-center p-4 z-50">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <button className="text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">

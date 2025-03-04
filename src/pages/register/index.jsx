@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import React from "react";
-
 import MetaData from "@/components/common/MetaData";
+import React from "react";
 import SignupModal from "@/components/auth/SignupModal";
 
 const metaInformation = {
@@ -31,7 +30,7 @@ const Register = () => {
                     <img
                      
                       className="mb25"
-                      src="/images/header-logo2.svg"
+                      src="/images/logo.svg"
                       alt="logo"
                     />
                   </Link>

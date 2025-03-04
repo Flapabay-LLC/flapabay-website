@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import React from "react";
 
 interface CommunityCommitmentModalProps {
   onClose: () => void;
@@ -12,7 +12,7 @@ const CommunityCommitmentModal: React.FC<CommunityCommitmentModalProps> = ({ onC
         <div className="text-center">
         <div className="text-2xl font-bold text-black">
               <Link className="header-logo logo1 flex justify-center pt-2 pb-2 items-center" to="/">
-                <img src="/images/header-logo2.svg" alt="Header Logo" />
+                <img src="/images/logo.svg" alt="Header Logo" />
               </Link>
             </div>
           <h3 className="text-sm font-semibold text-[#FFC500]">Our community commitment</h3>

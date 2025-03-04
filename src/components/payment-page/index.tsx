@@ -1,12 +1,13 @@
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { atom, useAtom } from "jotai";
 import { useRef, useState } from "react";
+
 import { FiChevronDown } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
+import { IoDiamondOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { IoDiamondOutline } from "react-icons/io5";
-import { IoClose } from "react-icons/io5";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
-import { atom, useAtom } from "jotai";
 const guestsAtom = atom({ adults: 1, children: 0, infants: 0, pets: 0 });
 
 const GuestSelectionModal = ({ isOpen, onClose }) => {
@@ -454,7 +455,7 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
       <header className="w-full bg-white z-50 fixed top-0 left-0 flex justify-between items-center p-2 px-4">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <button className="text-gray-700 text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">

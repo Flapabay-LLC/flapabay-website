@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { FiArrowLeft, FiArrowRight, FiBookOpen, FiZap } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const CreateListingStepFourteen = () => {
   const [imageVisible, setImageVisible] = useState(true);
@@ -17,7 +18,7 @@ const CreateListingStepFourteen = () => {
       <header className="w-full fixed top-0 left-0 flex justify-between items-center p-4">
         <div className="text-2xl font-bold text-black">
           <Link className="header-logo logo1" to="/">
-            <img src="/images/header-logo2.svg" alt="Header Logo" />
+            <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
         <button className="text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">

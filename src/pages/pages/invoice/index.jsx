@@ -1,9 +1,8 @@
 import InvoiceFooter from "@/components/pages/invoice/InvoiceFooter";
 import InvoiceTable from "@/components/pages/invoice/InvoiceTable";
 import InvoiceTopData from "@/components/pages/invoice/InvoiceTopData";
-import PrintInvoice from "@/components/pages/invoice/PrintInvoice";
-
 import { Link } from "react-router-dom";
+import PrintInvoice from "@/components/pages/invoice/PrintInvoice";
 import React from "react";
 
 const Invoice = () => {
@@ -31,7 +30,7 @@ const Invoice = () => {
                         <Link to="/">
                           <img
                            
-                            src="/images/header-logo2.svg"
+                            src="/images/logo.svg"
                             alt="header-logo2"
                           />
                         </Link>

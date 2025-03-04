@@ -1,10 +1,8 @@
-import SignIn from "@/components/common/login-signup-modal/SignIn";
-
 import { Link } from "react-router-dom";
-import React from "react";
-
-import MetaData from "@/components/common/MetaData";
 import LoginModal from "@/components/auth/LoginModal";
+import MetaData from "@/components/common/MetaData";
+import React from "react";
+import SignIn from "@/components/common/login-signup-modal/SignIn";
 
 const metaInformation = {
   title: "Login  || Flapabay- Apartment Rental, Experiences and More!",
@@ -33,7 +31,7 @@ const Login = () => {
                     <img
                      
                       className="mb25"
-                      src="/images/header-logo2.svg"
+                      src="/images/logo.svg"
                       alt="logo"
                     />
                   </Link>
