@@ -14,7 +14,7 @@ const MenuItems = () => {
       {menuItems.map((item) => (
         <li className="nav-item" key={item.id}>
           <a className="nav -link" href="#" role="button">
-            {item.title}
+             {item.title}
           </a>
         </li>
       ))}
