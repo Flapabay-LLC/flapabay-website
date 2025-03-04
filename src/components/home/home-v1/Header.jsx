@@ -33,10 +33,10 @@ const Header = () => {
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="logos mr40">
                     <Link className="header-logo logo1" to="/">
-                      <img src="/images/header-logo2.svg" alt="Header Logo" />
+                      <img src="/images/logo.svg" alt="Header Logo" />
                     </Link>
                     <Link className="header-logo logo2" to="/">
-                      <img src="/images/header-logo2.svg" alt="Header Logo" />
+                      <img src="/images/logo.svg" alt="Header Logo" />
                     </Link>
                   </div>
                   {/* End Logo */}
@@ -62,7 +62,7 @@ const Header = () => {
                   {/* <span className="d-none d-xl-block">Switch to hosting</span> */}
                   <Link
                     onClick={handleSwitch}
-                    className=" font-medium"
+                    className="font-medium "
                     to="/dashboard-home"
                     // to="/wizards"
                   >
@@ -83,12 +83,12 @@ const Header = () => {
 
                   <Link
                     href="#"
-                    className="login-info d-flex align-items-center ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
+                    className="mx-2 login-info d-flex align-items-center ud-btn add-property menu-btn bdrs60 mx-xl-4"
                     data-bs-toggle="modal"
                     data-bs-target="#loginSignupModal"
                     role="button"
 
-                    // className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
+                    // className="mx-2 ud-btn add-property menu-btn bdrs60 mx-xl-4"
                     // to="/dashboard-add-property"
                     // to="/wizards"
                   >
@@ -139,7 +139,7 @@ const Header = () => {
           aria-labelledby="loginSignupModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog  modal-dialog-scrollable modal-dialog-centered">
+          <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             <LoginSignupModal />
             {/* <Unsubscribe/> */}
           </div>
