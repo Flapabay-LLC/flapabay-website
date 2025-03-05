@@ -59,7 +59,7 @@ const MainMenu = () => {
   return (
     <ul className="ace-responsive-menu">
       <li className="visible_list dropitem">
-        <a className="list-item" href="#">
+        <a className="list-item" href="/">
           <span className={topMenu == "home" ? "title menuActive" : "title"}>
             Explore
           </span>
@@ -70,7 +70,7 @@ const MainMenu = () => {
       {/* End homeItems */}
 
       <li className="megamenu_style dropitem">
-        <a className="list-item" href="#">
+        <a className="list-item" href="/">
           <span className={topMenu == "explore" ? "title menuActive" : "title"}>
             Experiences
           </span>

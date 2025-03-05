@@ -26,6 +26,7 @@ import ContactWithAgent from "../property/property-single-style/sidebar/ContactW
 import NearbySimilarProperty from "../property/property-single-style/common/NearbySimilarProperty";
 import Footer from "../common/default-footer";
 import OverView from "../property/property-single-style/common/OverView";
+import Header from "../home/home-v1/Header";
 
 const metaInformation = {
   title: "Property Single V1 || Flapabay- Apartment Rental, Experiences and More!",
@@ -37,7 +38,7 @@ const BookingPage = () => {
     <>
     <MetaData meta={metaInformation} />
       {/* Main Header Nav */}
-      <DefaultHeader />
+      <Header />
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}

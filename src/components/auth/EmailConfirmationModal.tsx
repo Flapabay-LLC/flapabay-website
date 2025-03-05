@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import close from "../../assets/close.png";
+
 const EmailConfirmationModal = ({
   email,
   onClose,
@@ -7,54 +8,59 @@ const EmailConfirmationModal = ({
   email: string;
   onClose: () => void;
 }) => {
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCodeChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    if (/^\d*$/.test(value)) {
-      setCode(value); // Only update state if input is numeric
+    if (/^\d?$/.test(value)) {
+      const newCode = [...code];
+      newCode[index] = value;
+      setCode(newCode);
+
+      // Move to the next input field
+      if (value && index < 5 && inputRefs.current[index + 1]) {
+        inputRefs.current[index + 1]?.focus();
+      }
     }
   };
 
   return (
     <div
-      className=" inset-0  shadow-lg w-fit ml-auto mr-auto rounded-xl flex items-center justify-center z-50"
+      className=" inset-0 shadow-lg w-fit ml-auto mr-auto rounded-xl flex items-center justify-center z-50"
       onClick={onClose}
     >
       <div
         className="bg-white rounded-xl w-full max-w-md p-6 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className=" flex space-x-20">
-          <button className="  top-4 right-4" onClick={onClose}>
+        <div className="flex space-x-20">
+          <button className="top-4 right-4" onClick={onClose}>
             <img src={close} alt="Close" className="h-4 w-4" />
           </button>
           <h2 className="text-lg font-semibold text-center">Confirm account</h2>
         </div>
         <div className="h-[.5px] w-full bg-gray-400 mt-2" />
 
-        <h2 className="text-lg font-semibold mt-4">
-          Enter Your Verification Code
-        </h2>
+        <h2 className="text-lg font-semibold mt-4">Enter Your Verification Code</h2>
         <p className="text-sm text-gray-800 mb-4 mt-2">
           Enter the code we emailed to {email}.
         </p>
         <div className="flex justify-center space-x-2 mb-4">
-          {[...Array(6)].map((_, i) => (
+          {code.map((digit, i) => (
             <input
               key={i}
+              ref={(el) => (inputRefs.current[i] = el)}
               type="text"
               maxLength={1}
+              value={digit}
               className="w-12 h-12 border bg-white border-gray-300 rounded-md text-center text-lg"
-              onChange={handleCodeChange}
+              onChange={(e) => handleCodeChange(i, e)}
             />
           ))}
         </div>
         <p className="text-sm text-gray-600">
-          Didn’t get an email?{" "}
-          <a href="#" className="text-black underline">
-            Try again
-          </a>
+          Didn’t get an email? <a href="#" className="text-black underline">Try again</a>
         </p>
       </div>
     </div>

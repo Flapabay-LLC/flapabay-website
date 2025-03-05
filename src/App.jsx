@@ -109,7 +109,8 @@ import ReservationPage from "./components/reservation-page";
 import HelpPage from "./components/help-center";
 import BottomNav from "./components/bottom-nav";
 
-
+import { useSetAtom } from "jotai";
+import { userAtom } from "./context/atom";
 
 
 
@@ -119,6 +120,10 @@ if (typeof window !== "undefined") {
   import("bootstrap");
 }
 
+
+
+
+
 function App() {
   useEffect(() => {
     Aos.init({
@@ -126,6 +131,16 @@ function App() {
       once: true,
     });
   }, []);
+
+
+  const setUser = useSetAtom(userAtom);
+
+useEffect(() => {
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
+}, []);
 
   return (
     <>

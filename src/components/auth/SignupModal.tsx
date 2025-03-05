@@ -100,15 +100,28 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
 
   const [error, setError] = useState("");
   const handleContinue = () => {
+    if (isEmailMode) {
+      if (!email || !isValidEmail(email)) {
+        setError("Please enter a valid email first.");
+        return;
+      }
+    }
+    setError(""); // Clear any previous errors
     setShowFinishModal(true);
   };
+
+  // Function to validate email format
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const handlePhoneContinue = () => {
     setShowConfirmationModal(true);
   };
 
   if (showFinishModal) {
-    return <FinishSignupModal onClose={() => setShowFinishModal(false)} />;
+    return <FinishSignupModal onClose={() => setShowFinishModal(false)} email = {email} />;
   }
   if (showConfirmationModal) {
     return (
@@ -138,44 +151,6 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
   const toggleMode = () => {
     setIsEmailMode((prevMode) => !prevMode); // Toggle between email and phone mode
   };
-
-
-
-
-
-
-  const handleSubmit = async () => {
-    setLoading(true);
-    setError("");
-
-    const requestData = isEmailMode
-      ? { email }
-      : { phone: selectedCountryCode + phoneNumber };
-
-    try {
-      const response = await axios.post(
-        "http://your-api-url.com/api/register", // Replace with your actual API URL
-        requestData
-      );
-
-      console.log("Success:", response.data);
-
-      if (isEmailMode) {
-        setShowFinishModal(true);
-      } else {
-        setShowConfirmationModal(true);
-      }
-    } catch (err: any) {
-      setError(err.response?.data?.message || "An error occurred.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
-
-
-
 
   return (
     <div>
@@ -223,11 +198,12 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="bg-white w-full text-[16px] rounded-md shadow-sm  p-2 sm:text-sm outline-none"
+                  className="w-full text-[16px] rounded-md p-[12px] sm:text-sm"
                   value={email}
                   onChange={handleEmailChange}
                 />
               </div>
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
           )}
 
@@ -238,16 +214,15 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
               Privacy Policy
             </a>
           </p>
-          {error && <p className="text-red-500">{error}</p>}
 
           {isEmailMode ? (
             <button
               // onClick={handleContinue}
-              onClick={handleSubmit}
+              onClick={handleContinue}
               className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
               disabled={loading}
             >
-           {loading ? "Processing..." : "Continue"}
+              Continue
             </button>
           ) : (
             <button
@@ -256,9 +231,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
             >
               Continue with phone
             </button>
-            
           )}
-          {error && <p className="text-red-500">{error}</p>}
 
           {/* Divider */}
           <div className="flex items-center my-4">
@@ -285,7 +258,6 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
               onClick={toggleMode}
               className="w-full border border-gray-600 rounded-md py-2 flex items-center space-x-0"
             >
-             
               {isEmailMode ? (
                 <img src={phone} alt="Toggle Icon" className="h-4 w-7 pl-3" />
               ) : (
