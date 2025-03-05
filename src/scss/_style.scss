@@ -658,7 +658,7 @@ li {
 .dashboard_sidebar_list .sidebar_list_item a:focus,
 .dashboard_sidebar_list .sidebar_list_item a.-is-active {
     background-color: #181a20;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .dashboard_sidebar_list .sidebar_list_item a {
@@ -745,9 +745,9 @@ li {
     background-color: var(--color-primary);
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    height: calc(100% - 87px);
+    height: 100%;
     left: 0;
-    margin-top: 87px;
+    margin-top: 0;    
     overflow-y: scroll;
     padding: 30px;
     padding-top: 60px;
@@ -7563,7 +7563,7 @@ header.nav-homepage-style.sticky .login-info {
 .header-logo {
     left: -16px;
     position: relative;
-    
+
 }
 header.nav-homepage-style.sticky .sidemenu-btn .img-1 {
     display: none;

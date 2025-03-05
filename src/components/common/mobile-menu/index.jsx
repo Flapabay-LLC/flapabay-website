@@ -1,9 +1,7 @@
-
-import { Link } from "react-router-dom";
-
 import ContactInfo from "./ContactInfo";
-import Social from "./Social";
+import { Link } from "react-router-dom";
 import ProSidebarContent from "./ProSidebarContent";
+import Social from "./Social";
 
 const MobileMenu = () => {
   return (

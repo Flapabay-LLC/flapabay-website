@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { useAtom } from "jotai";
 import { modeAtom } from "../../../context/atom";
+import { useAtom } from "jotai";
+import { useLocation } from "react-router-dom";
+
 const SidebarDashboard = () => {
   const { pathname } = useLocation();
   const [isHosting] = useAtom(modeAtom);
 
-  
   const sidebarItems = [
     {
       items: [
@@ -69,7 +69,7 @@ const SidebarDashboard = () => {
           icon: "flaticon-protection",
           text: "Host an experience",
         },
-        
+
         {
           href: "/login",
           icon: "flaticon-logout",
@@ -113,6 +113,18 @@ const SidebarDashboard = () => {
 
   return (
     <div className="dashboard__sidebar d-none d-lg-block">
+      <div className="container">
+        <div className="col-12 col-lg-auto">
+          <div className="pb-5 text-center right-4 w-30 text-lg-center d-flex align-items-center">
+            <div className="me-2 me-xl-5">
+              <Link className="logo" to="/">
+                <img style={{width: 134, paddingLeft:4}} src="/images/icon.svg" alt="Header Logo" />
+              </Link>
+            </div>
+            {/* End Logo */}
+          </div>
+        </div>
+      </div>
       <div className="dashboard_sidebar_list">
         {currentSidebarItems.map((section, sectionIndex) => (
           <div key={sectionIndex}>
@@ -125,7 +137,6 @@ const SidebarDashboard = () => {
             </p>
             {section.items.map((item, itemIndex) => (
               <div key={itemIndex} className="sidebar_list_item">
-                
                 <Link
                   to={item.href} // Path to navigate to
                   className={`items-center ${getActiveClass(item.href)}`} // Get the active class
