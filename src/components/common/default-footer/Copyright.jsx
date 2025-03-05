@@ -21,12 +21,12 @@ const Footer = () => {
   ];
 
   return (
-    <div className="container-fluid container-fluidest white-bdrt1 py-4">
+    <div className="py-4 container-fluid container-fluidest white-bdrt1">
       <div className="row">
         <div className="col-sm-6">
           <div className="text-center text-lg-start">
             <p className="text-white copyright-text text-gray ff-heading">
-              © Flapabay{getCurrentYear()}{" "}
+            © FlapaBay &nbsp;{getCurrentYear()}{" "}
               <a
                 href="#"
                 target="_blank"
@@ -43,7 +43,7 @@ const Footer = () => {
 
         <div className="col-sm-6">
           <div className="text-center text-lg-end">
-            <p className="footer-menu ff-heading text-white">
+            <p className="text-white footer-menu ff-heading">
               {footerMenuItems.map((item, index) => (
                 <React.Fragment key={index}>
                   <a className="text-white" href={item.link}>

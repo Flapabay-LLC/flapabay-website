@@ -1,11 +1,10 @@
-
-import { Link } from "react-router-dom";
-import ContactMeta from "./ContactMeta";
 import AppWidget from "./AppWidget";
+import ContactMeta from "./ContactMeta";
+import Copyright from "./Copyright";
+import { Link } from "react-router-dom";
+import MenuWidget from "./MenuWidget";
 import Social from "./Social";
 import Subscribe from "./Subscribe";
-import MenuWidget from "./MenuWidget";
-import Copyright from "./Copyright";
 
 const Footer = () => {
   return (
@@ -13,7 +12,7 @@ const Footer = () => {
       <div className="container">
         <div className="row bb-white-light pb30 mb60">
           <div className="col-sm-5">
-            <div className="footer-widget text-center text-sm-start">
+            <div className="text-center footer-widget text-sm-start">
               <Link className="footer-logo" to="/">
                 <img
                 
@@ -27,7 +26,7 @@ const Footer = () => {
           {/* End .col */}
 
           <div className="col-sm-7">
-            <div className="social-widget text-center text-sm-end">
+            <div className="text-center social-widget text-sm-end">
               <Social />
             </div>
           </div>
@@ -44,11 +43,11 @@ const Footer = () => {
           {/* End .col */}
 
           <div className="col-md-6 col-lg-4 offset-lg-2">
-            <div className="footer-widget mb-4 mb-lg-5">
+            <div className="mb-4 footer-widget mb-lg-5">
               <ContactMeta />
-              <div className="footer-widget mb-4 mb-lg-5">
-                <div className="mailchimp-widget mb-4 mb-lg-5">
-                  <h6 className="title text-white mb20">
+              <div className="mb-4 footer-widget mb-lg-5">
+                <div className="mb-4 mailchimp-widget mb-lg-5">
+                  <h6 className="text-white title mb20">
                     Keep Yourself Up to Date
                   </h6>
                   <Subscribe />

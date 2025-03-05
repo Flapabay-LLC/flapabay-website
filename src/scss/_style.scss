@@ -252,7 +252,8 @@ li {
     align-items: center;
     justify-content: center;
     display: flex;
-    width: 37%;
+    width: 36%;
+    height: 5rem;
     padding: 0.9rem;
     background: var(--color-white);
     border-radius: 15px;
@@ -281,14 +282,15 @@ li {
     position: relative;
 
     .app-info {
-        background-color: var(--color-white); /* Default background: dark */
+        background-color: var(--color-dark); /* Default background: dark */
         border-radius: 12px;
-        padding: 10px 20px 2px;
+        padding-bottom: 1rem;
+        padding: 10px 20px 10px;
         width: 210px;
         transition: all 0.4s ease;
 
         &:hover {
-            background-color: var(--color-primary) !important;
+            background-color: var(--color-white) !important;
 
             .app-text,
             .app-title,
@@ -299,10 +301,10 @@ li {
         }
 
         .app-text {
-            color: #000000; /* Default text color */
+            color: #ffffff; /* Default text color */
 
             &:hover {
-                color: var(--color-white) !important;
+                color: var(--color-dark ) !important;
             }
         }
 
@@ -310,7 +312,7 @@ li {
             color: var(--color-dark); /* Default title color */
 
             &:hover {
-                color: var(--color-white) !important;
+                color: var(--color-dark) !important;
             }
         }
 
@@ -326,7 +328,7 @@ li {
             background-color: var(--color-white); /* Light style background */
 
             &:hover {
-                background-color: var(--color-dark) !important;
+                background-color: var(--color-white) !important;
 
                 .app-text,
                 .app-title,
@@ -355,8 +357,9 @@ li {
     position: relative;
 }
 .mailchimp-style1 .form-control {
-    background-color: rgba(255, 255, 255, 0.433);
+    background-color: rgb(255, 255, 255);
     border: none;
+    padding: 20px;
     border-radius: 12px;
     color: #ffffff;
     font-size: 14px;
@@ -379,15 +382,16 @@ li {
     outline: none;
 }
 .mailchimp-style1 button {
-    background-color: transparent;
-    border: none;
+    background-color: var(--color-dark);
     color: #ffffff;
     font-family: var(--title-font-family);
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     position: absolute;
-    right: 25px;
-    top: 20px;
+    border-radius: 12px;
+    padding: 1rem;
+    right: 8px;
+    top: 35px;
 }
 .mailchimp-style1.white-version .form-control {
     background-color: #ffffff;
@@ -4837,7 +4841,7 @@ section {
 }
 
 .scrollToHome {
-    background-color: transparent;
+    background-color: var(--color-white);
     border: 1px solid var(--color-dark) !important;
     border-radius: 15px;
     bottom: 45px;
@@ -4864,7 +4868,7 @@ section {
 
 .scrollToHome:hover {
     background-color: var(--color-dark) !important;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .scrollToHome.show {
@@ -7559,6 +7563,7 @@ header.nav-homepage-style.sticky .login-info {
 .header-logo {
     left: -16px;
     position: relative;
+    
 }
 header.nav-homepage-style.sticky .sidemenu-btn .img-1 {
     display: none;

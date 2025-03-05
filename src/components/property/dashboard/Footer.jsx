@@ -12,11 +12,11 @@ const Footer = () => {
   return (
     <footer className="dashboard_footer pt30 pb10">
       <div className="container">
-        <div className="row items-center justify-content-center justify-content-md-between">
+        <div className="items-center row justify-content-center justify-content-md-between">
           <div className="col-auto">
             <div className="copyright-widget">
               <p className="text">
-                © Flapabay{" "}{currentYear}{" "}
+                © FlapaBay &nbsp;{" "}{currentYear}{" "}
                 <a
                   href="https://themeforest.net/user/Copyright"
                   target="_blank"
@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
 
           <div className="col-auto">
-            <div className="footer_bottom_right_widgets text-center text-lg-end">
+            <div className="text-center footer_bottom_right_widgets text-lg-end">
               <p>
                 {footerLinks.map((link, index) => (
                   <React.Fragment key={index}>
