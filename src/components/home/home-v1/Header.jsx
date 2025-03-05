@@ -89,7 +89,7 @@ const Header = () => {
                       {isHosting ? "Switch to Travelling" : "Switch to Hosting"}
                     </Link>
                   ) : (
-                    <Link className="font-medium">Flapabay your home</Link>
+                    <Link className="font-medium">Find your home</Link>
                   )}
 
                   <div className="flex items-center">
