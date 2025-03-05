@@ -1,10 +1,9 @@
-import React from "react";
 import AppWidget from "./AppWidget";
-
+import React from "react";
 
 const Cta = () => {
   return (
-    <section className="col-12 pt-50 our-cta3 pb100 pt60-md pb60-md">
+    <section className="pt-40 col-12 our-cta3 pb100 pt60-md pb60-md">
       <div className="container">
         <div className="row">
           <div className="col-lg-6 col-xl-6 d-none d-xl-block">

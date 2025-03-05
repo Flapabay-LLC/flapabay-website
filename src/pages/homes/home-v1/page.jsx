@@ -1,27 +1,24 @@
-import Explore from "../../../components/common/Explore";
-import Footer from "../../../components/common/default-footer";
-import MobileMenu from "../../../components/common/mobile-menu";
+import React, { useEffect, useState } from "react";
+
 import About from "../../../components/home/home-v1/About";
 import ApartmentType from "../../../components/home/home-v1/ApartmentType";
-import CallToActions from "../../../components/common/CallToActions";
-import FeaturedListings from "../../../components/home/home-v1/FeatuerdListings";
-import Header from "../../../components/home/home-v1/Header";
-import Partner from "../../../components/common/Partner";
-import Cta from "@/components/home/home-v6/Cta";
-
-import PropertyByCitiesWrapper from "@/components/home/home-v3/PropertyByCitiesWrapper";
-import PropertiesByCities from "../../../components/home/home-v4/PropertiesByCities";
-import Testimonial from "../../../components/home/home-v1/Testimonial";
-import Hero from "../../../components/home/home-v1/hero";
-
 import Blog from "../../../components/common/Blog";
+import CallToActions from "../../../components/common/CallToActions";
+import Cta from "@/components/home/home-v6/Cta";
+import Explore from "../../../components/common/Explore";
+import FeaturedListings from "../../../components/home/home-v1/FeatuerdListings";
+import Footer from "../../../components/common/default-footer";
+import Header from "../../../components/home/home-v1/Header";
+import Hero from "../../../components/home/home-v1/hero";
 import { Link } from "react-router-dom";
-import PopulerProperty from "../../../components/home/home-v1/PopulerProperty";
-
 import MetaData from "@/components/common/MetaData";
+import MobileMenu from "../../../components/common/mobile-menu";
+import Partner from "../../../components/common/Partner";
+import PopulerProperty from "../../../components/home/home-v1/PopulerProperty";
 import PropertiesByCategory from "@/components/home/home-v4/PropertiesByCategory";
-
-import React, { useEffect, useState } from "react";
+import PropertiesByCities from "../../../components/home/home-v4/PropertiesByCities";
+import PropertyByCitiesWrapper from "@/components/home/home-v3/PropertyByCitiesWrapper";
+import Testimonial from "../../../components/home/home-v1/Testimonial";
 import { useScreenSize } from "@/utilis/screenUtils";
 
 const metaInformation = {
@@ -43,7 +40,7 @@ const Home_V1 = () => {
         <div className="home-style1">
           <div className="container-fluid container-fluidest">
             <div className="row">
-              <div className="col-xl-10 mx-auto">
+              <div className="mx-auto col-xl-10">
                 <Hero />
                
 
@@ -100,7 +97,7 @@ const Home_V1 = () => {
       <section id="explore-property" className="pb90 pb30-md somesections">
         {/* Popular Property */}
         <PropertyByCitiesWrapper showCircularIcons={false}/>
-        {/* Popular Property */}``
+        {/* Popular Property */}
       </section>
       {/* End Explore Apartment */}
 
@@ -115,7 +112,7 @@ const Home_V1 = () => {
       
       {/* End Our CTA */}
       {/* Start Our Footer */}
-      <section className="footer-style1 pt60 pb-0">
+      <section className="pb-0 footer-style1 pt60">
         <Footer />
       </section>
 

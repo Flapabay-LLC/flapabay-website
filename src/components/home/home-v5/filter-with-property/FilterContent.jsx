@@ -1,17 +1,16 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
 import "rc-slider/assets/index.css";
 
-import { SearchNormal, Setting4, Size } from "iconsax-react";
-import { useScreenSize } from "@/utilis/screenUtils";
-
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-import { FaPlus } from "react-icons/fa6";
-import { TiMinus } from "react-icons/ti";
+import React, { useEffect, useRef, useState } from "react";
+import { SearchNormal, Setting4, Size } from "iconsax-react";
 import { atom, useAtom } from "jotai";
+
+import { FaPlus } from "react-icons/fa6";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { TiMinus } from "react-icons/ti";
+import { useNavigate } from "react-router-dom";
+import { useScreenSize } from "@/utilis/screenUtils";
 
 const selectedMonthsAtom = atom(3);
 const selectedFlexibleOptionAtom = atom(null);
@@ -905,11 +904,10 @@ const FilterContent = () => {
                           <button
                             style={{
                               position: "fixed",
-                              right: 50,
-                              width: 55,
-                              height: 55,
+                              right: 75,
+                             
                             }}
-                            className="ud-btn btn-thm ms-2 search-tbn search-btn"
+                            className="transform rounded-full right-3 top-1/2 ud-btn btn-thm ms-2 search-tbn search-btn"
                             type="button"
                             onClick={() => navigate("/grid-full-3-col")}
                           >
