@@ -1,5 +1,4 @@
 import DashboardHeader from "@/components/common/DashboardHeader";
-import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import Footer from "@/components/property/dashboard/Footer";
 import MetaData from "@/components/common/MetaData";
 import MobileMenu from "@/components/common/mobile-menu";
@@ -41,7 +40,7 @@ const DashboardHome = () => {
                   
                   <div className="pb-10 col-lg-12">
                     <div className="dashboard_title_area">
-                    <h1 className="pb-3 text-4xl font-semibold">Welcome back, George</h1>
+                    <h1 className="pb-3 text-3xl font-semibold">Welcome back, George</h1>
                       <p className="text">We are glad to see you again!</p>
                     </div>
                   </div>

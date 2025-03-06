@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useAtom } from "jotai";
 import { modeAtom } from "../../../context/atom";
+import { useAtom } from "jotai";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
+
 const DboardMobileNavigation = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { pathname } = useLocation();
@@ -19,7 +20,7 @@ const [isHosting] = useAtom(modeAtom);
         {
           href: "/dashboard-message",
           icon: "flaticon-chat-1",
-          text: "Message",
+          text: "Messages",
         },
         {
           // href: "/dashboard-my-properties",
@@ -81,7 +82,7 @@ const [isHosting] = useAtom(modeAtom);
         {
           href: "/dashboard-message",
           icon: "flaticon-chat-1",
-          text: "Message",
+          text: "Messages",
         },
         {
           href: "/login",

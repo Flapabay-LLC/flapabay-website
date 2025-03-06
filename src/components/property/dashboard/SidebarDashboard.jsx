@@ -19,7 +19,7 @@ const SidebarDashboard = () => {
         {
           href: "/dashboard-message",
           icon: "flaticon-chat-1",
-          text: "Message",
+          text: "Messages",
         },
         {
           // href: "/dashboard-my-properties",
@@ -83,10 +83,26 @@ const SidebarDashboard = () => {
     {
       items: [
         {
+          href: "/",
+          icon: "flaticon-home-1",
+          text: "Explore",
+        },
+        {
+          href: "/whishlist-page",
+          icon: "flaticon-heart-1",
+          text: "Wishlist",
+        },
+        {
+          href: "/whishlist-page",
+          icon: "flaticon-heart-1",
+          text: "Trips",
+        },
+        {
           href: "/dashboard-message",
           icon: "flaticon-chat-1",
-          text: "Message",
+          text: "Messages",
         },
+        
         {
           href: "/dashboard-experience",
           // href: "/dashboard-my-package",

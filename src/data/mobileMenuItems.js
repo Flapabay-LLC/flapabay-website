@@ -93,7 +93,7 @@ const mobileMenus = [
     label: "Dashboard",
     subMenu: [
       { label: "Dashboard Home", path: "/dashboard-home" },
-      { label: "Message", path: "/dashboard-message" },
+      { label: "Messages", path: "/dashboard-message" },
       { label: "New Property", path: "/dashboard-add-property" },
       { label: "My Properties", path: "/dashboard-my-properties" },
       { label: "My Favorites", path: "/dashboard-my-favourites" },

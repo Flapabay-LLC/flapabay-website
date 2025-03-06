@@ -1,10 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-import MainMenu from "@/components/common/MainMenu";
 import SidebarPanel from "@/components/common/sidebar-panel";
 import { modeAtom } from "../../context/atom";
 import { useAtom } from "jotai";
+
+// import MainMenu from "@/components/common/MainMenu";
+
+
+
 
 const DashboardHeader = () => {
   const [isHosting, setIsHosting] = useAtom(modeAtom); // Get the current mode and setter function
@@ -25,7 +29,7 @@ const DashboardHeader = () => {
         },
         {
           icon: "flaticon-chat-1",
-          text: "Message",
+          text: "Messages",
           href: "/dashboard-message",
         },
         {
@@ -99,10 +103,10 @@ const DashboardHeader = () => {
               </div>
               {/* End d-none d-lg-block */}
 
-              <div className=" flex items-center col-6 col-lg-auto">
+              <div className="flex items-center col-6 col-lg-auto">
                 <Link
                   onClick={handleSwitch}
-                  className=" font-medium mb-2 mr-5"
+                  className="mb-2 mr-5 font-medium "
                   
                   // to="/wizards"
                 >
@@ -110,7 +114,7 @@ const DashboardHeader = () => {
                   {/* <i className="fal fa-arrow-right-long" /> */}
                 </Link>
                 <div className="text-center text-lg-end header_right_widgets">
-                  <ul className="mb0 d-flex justify-content-center justify-content-sm-end p-0">
+                  <ul className="p-0 mb0 d-flex justify-content-center justify-content-sm-end">
                     <li className="d-none d-sm-block">
                       {/* <Link className="text-center mr15" to="/login">
                         <span className="flaticon-email" />

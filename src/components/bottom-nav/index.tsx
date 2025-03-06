@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { FiSearch, FiHeart, FiMap, FiMessageSquare, FiUser } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { FiHeart, FiMap, FiMessageSquare, FiSearch, FiUser } from "react-icons/fi";
 
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const tabs = [
   { name: "Search", icon: <FiSearch />, to: "/" },
