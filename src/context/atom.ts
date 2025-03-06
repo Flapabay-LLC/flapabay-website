@@ -25,4 +25,4 @@ export const guestAtom = atom({
   const storedUser = typeof window !== "undefined" ? localStorage.getItem("user") : null;
   
   export const userAtom = atom<User | null>(storedUser ? JSON.parse(storedUser) : null);
-  
+  export const translationsAtom = atom({});

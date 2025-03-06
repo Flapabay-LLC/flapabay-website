@@ -7,6 +7,7 @@ import TravelAdmin from "./TravelAdmin";
 import Header from "../home/home-v1/Header";
 import MobileMenu from "../common/mobile-menu";
 import { SearchNormal } from "iconsax-react";
+import Footer from "../common/default-footer";
 
 const tabs = [
   { name: "Guest", component: <Guest /> },
@@ -102,6 +103,9 @@ export default function HelpPage() {
         {/* Active Tab Content */}
         <div className="w-full max-w-6xl pt-8 m-1">{tabs.find((tab) => tab.name === activeTab)?.component}</div>
       </div>
+      <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
     </>
   );
 }

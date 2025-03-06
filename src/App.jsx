@@ -111,6 +111,7 @@ import BottomNav from "./components/bottom-nav";
 
 import { useSetAtom } from "jotai";
 import { userAtom } from "./context/atom";
+import ExperiencePage from "./components/experiences";
 
 
 
@@ -160,6 +161,7 @@ useEffect(() => {
               <Route path="home-v8" element={<Home_V8 />} />
               <Route path="home-v9" element={<Home_V9 />} />
               <Route path="home-v10" element={<Home_V10 />} />
+              <Route path="experiences" element={<ExperiencePage />} />
 
               <Route path="grid-default" element={<GridDefault />} />
               <Route path="grid-full-3-col" element={<GridFull3Col />} />
