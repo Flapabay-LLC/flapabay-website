@@ -1,11 +1,11 @@
 import DashboardHeader from "@/components/common/DashboardHeader";
-import MobileMenu from "@/components/common/mobile-menu";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import Footer from "@/components/property/dashboard/Footer";
-import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
-
 import MetaData from "@/components/common/MetaData";
+import MobileMenu from "@/components/common/mobile-menu";
+import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import TodayHome from "@/components/property/dashboard/dashboard-home/TodayHome";
+import TopStateBlock from "@/components/property/dashboard/dashboard-home/TopStateBlock";
 
 const metaInformation = {
   title: "Dashboard Home || Flapabay- Apartment Rental, Experiences and More!",
@@ -14,7 +14,7 @@ const metaInformation = {
 const DashboardHome = () => {
   return (
     <>
-    <MetaData meta={metaInformation} />
+      <MetaData meta={metaInformation} />
       {/* Main Header Nav */}
       <DashboardHeader />
       {/* End Main Header Nav */}
@@ -31,25 +31,28 @@ const DashboardHome = () => {
 
           <div className="dashboard__main pl0-md">
             <div className="dashboard__content bgc-f7">
-              <div className="row pb40">
-                <div className="col-lg-12">
-                  <DboardMobileNavigation />
-                </div>
-                {/* End .col-12 */}
-
-                
-                {/* col-lg-12 */}
-              </div>
+             
               {/* End .row */}
 
-              
               {/* End .row */}
 
               <div className="row">
                 <div>
-                  <div className="ps-widget bgc-white bdrs12 default-box-shadow2  mb30 overflow-hidden position-relative">
+                  
+                  <div className="pb-10 col-lg-12">
+                    <div className="dashboard_title_area">
+                    <h1 className="pb-3 text-4xl font-semibold">Welcome back, George</h1>
+                      <p className="text">We are glad to see you again!</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="overflow-hidden ps-widget bgc-white bdrs12 default-box-shadow2 mb30 position-relative">
                     <div className="packages_table table-responsive">
-                      <TodayHome/>
+                     <TopStateBlock />
+                     
+                      <TodayHome />
                     </div>
                   </div>
                 </div>
