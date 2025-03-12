@@ -2,13 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import google from "../../assets/google.png";
 import apple from "../../assets/apple-logo.png";
 import facebook from "../../assets/facebook.png";
-import email from "../../assets/email.png";
-import close from "../../assets/close.png";
 import phone from "../../assets/smartphone.png";
 import FinishSignupModal from "./FinishSignupModal.";
 import ConfirmationModal from "./ConfirmationModal";
-import { Link } from "react-router-dom";
-import axios from "axios";
+
 // List of countries with phone codes
 const countries = [
   { name: "Afghanistan", code: "+93" },

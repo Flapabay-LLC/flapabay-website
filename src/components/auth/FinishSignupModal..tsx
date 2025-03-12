@@ -109,7 +109,7 @@ const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: str
         {/* Contact Info */}
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Contact info</label>
-          <input type="email" value={email} readOnly className="w-full border text-[15px] bg-white border-gray-300 rounded-md p-2" />
+          <input type="email" placeholder="Email" value={email} readOnly className="w-full border text-[15px] bg-white border-gray-300 rounded-md p-2" />
         </div>
 
         {/* Phone Number */}

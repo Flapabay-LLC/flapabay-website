@@ -25,37 +25,7 @@ export default function PropertyByCitiesWrapper() {
     <section className="pb90 pb30-md pt-0">
     <div className="container-fluid container-fluidest">
       <div className="row" data-aos="fade-up" data-aos-delay="0">
-        {/* <div className="col-lg-9">
-          <div className="main-title2">
-            <h2 className="title">Discover Popular Properties</h2>
-            <p className="paragraph">
-              Aliquam lacinia diam quis lacus euismod
-            </p>
-          </div>
-        </div>
-        
-
-        <div className="col-lg-3">
-          <div className="dark-light-navtab style2 text-start text-lg-end mt-0 mt-lg-4 mb-4">
-            <ul
-              className="nav nav-pills justify-content-start justify-content-lg-end"
-              id="pills-tab"
-              role="tablist"
-            >
-              <li className="nav-item" role="presentation" onClick={()=>setCurrentType('rent')} >
-                <button className={`nav-link ${currentType == 'rent' ? 'active':''} `} type="button">
-                  For Rent
-                </button>
-              </li>
-              <li className="nav-item" role="presentation" onClick={()=>setCurrentType('sale')}>
-                <button className={`nav-link me-0 ${currentType == 'sale' ? 'active':''} `} type="button">
-                  For Sale
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div> */}
-        {/* End .col-lg-3 */}
+ 
       </div>
       {/* End .row */}
 

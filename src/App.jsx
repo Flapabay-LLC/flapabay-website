@@ -309,7 +309,7 @@ useEffect(() => {
               <Route path="confirmation-modal" element={<ConfirmationModal/>} />
 
               <Route path="single-v1/:id" element={<SingleV1 />} />
-              <Route path="booking-page" element={<BookingPage />} />
+              <Route path="booking-page/:id" element={<BookingPage />} />
               <Route path="single-v2/:id" element={<SingleV2 />} />
               <Route path="single-v3/:id" element={<SingleV3 />} />
               <Route path="single-v4/:id" element={<SingleV4 />} />

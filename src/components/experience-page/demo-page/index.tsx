@@ -62,13 +62,13 @@ const DemoPage = () => {
       <nav className="fixed top-0 left-0 w-full bg-white bg-opacity-90 shadow-sm z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           {/* Logo */}
-          <Link className="header-logo logo1" to="/">
+          <Link className="header-logo w-32  logo1" to="/">
             <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
 
           {/* Let's Go Button */}
           <Link to="/first-step-exp">
-            <button className="bg-[#ffc500] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#e0b000] transition-colors">
+            <button className="bg-[#ffc500] text-white px-4 py-1 rounded-full font-semibold hover:bg-[#e0b000] transition-colors">
               Let's go
             </button>
           </Link>
@@ -100,7 +100,7 @@ const DemoPage = () => {
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
           <source
-            src="https://videocdn.cdnpk.net/videos/09dd3354-65e1-469c-a518-a281bbe7ea31/horizontal/previews/clear/small.mp4?token=exp=1739949701~hmac=cc763f2d55fc222c5bead2a9f72b32e4933fb17ac1c348791d8bd4dbdb135ea7"
+            src="/public/images/two.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
