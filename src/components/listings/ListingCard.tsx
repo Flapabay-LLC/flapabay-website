@@ -38,11 +38,11 @@ const ListingCard: React.FC<ListingCardProps> = ({ listing, onFavoriteToggle }) 
     const updateIcon = async () => {
       try {
         if (listing.property_type?.black_icon) {
-          alert('YH')
+          // alert('YH')
           setCurrentIcon(listing.property_type.black_icon);
         }
       } catch (error) {
-       alert('YHjkkkkkkkk')
+      //  alert('YHjkkkkkkkk')
         console.error('Error loading icon:', error);
         setCurrentIcon('Building');
       }
