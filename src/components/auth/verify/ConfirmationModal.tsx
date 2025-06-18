@@ -75,6 +75,10 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, phone, c
         setIsVerifying(false);
         return;
       }
+      if(loginResponse){
+        localStorage.setItem('auth_token', loginResponse.token);
+        localStorage.setItem('user_data', JSON.stringify(loginResponse.user));
+      }
 
       onClose();
       setIsVerifying(false);

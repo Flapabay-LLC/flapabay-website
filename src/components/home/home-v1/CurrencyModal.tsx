@@ -56,8 +56,8 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
       return;
     }
 
-    if (response?.data.success) {
-        setLanguages(response.data.data);
+    if (response?.success) {
+        setLanguages(response.data);
       }
       setLoading(false);
   };
@@ -77,15 +77,15 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
       });
       return;
     }
-
-    if (response?.data.success) {
-      setCurrencies(response.data.data);
+    if (response?.success) {
+      setCurrencies(response.data);
     }
     setLoading(false);
   };
 
   const handleCurrencySelect = async (currencyCode: string) => {
-    const [response, error] = await currencyService.setUserCurrency(currencyCode);
+    const user_data = JSON.parse(localStorage.getItem('user_data') || '{}');
+    const [response, error] = await currencyService.setUserCurrency(currencyCode, user_data?.id);
     
     if (error) {
       toast({
@@ -96,7 +96,7 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
       return;
     }
   
-    if (response?.data.success) {
+    if (response?.success) {
       onSelect(currencyCode);
       toast({
         title: "Success",
@@ -106,7 +106,8 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
   };
 
   const handleLanguageSelect = async (languageCode: string) => {
-    const [response, error] = await currencyService.setUserLanguage(languageCode);
+    const user_data = JSON.parse(localStorage.getItem('user_data') || '{}');
+    const [response, error] = await currencyService.setUserLanguage(languageCode, user_data?.id);
     
     if (error) {
       toast({
