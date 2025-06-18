@@ -34,11 +34,11 @@ export const currencyService = {
   getSupportedLanguages: (): ApiResult<Language[]> => 
     withTryCatch(() => api.get<ApiResponse<Language[]>>('/supported-lang'))(),
 
-  setUserCurrency: (currencyCode: string): ApiResult<void> => 
-    withTryCatch(() => api.post<ApiResponse<void>>('/set-user-currency', { currency_code: currencyCode }))(),
+  setUserCurrency: (currencyCode: string, user_id: number): ApiResult<void> => 
+    withTryCatch(() => api.post<ApiResponse<void>>('/set-user-currency', { currency: currencyCode, user_id }))(),
 
-  setUserLanguage: (languageCode: string): ApiResult<void> => 
-    withTryCatch(() => api.post<ApiResponse<void>>('/set-user-language', { language_code: languageCode }))(),
+  setUserLanguage: (languageCode: string, user_id: number): ApiResult<void> => 
+    withTryCatch(() => api.post<ApiResponse<void>>('/set-user-default-supported-lang', { language_code: languageCode, user_id }))(),
 
   getTranslations: (languageCode: string): ApiResult<Translation[]> => 
     withTryCatch(() => api.get<ApiResponse<Translation[]>>('/translations', {

@@ -52,9 +52,11 @@ export const useListings = ({
       let filteredListings = response.data;
       
       if (propertyType) {
+        console.log(filteredListings, propertyType)
         filteredListings = filteredListings.filter(listing => 
           listing.property_type?.name.toLowerCase() === propertyType.toLowerCase()
         );
+        console.log(filteredListings, propertyType)
       }
 
       setListings(filteredListings);

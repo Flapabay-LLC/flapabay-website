@@ -18,7 +18,7 @@ const GridFull3Col = () => {
     <>
     <MetaData meta={metaInformation} />
       {/* Main Header Nav */}
-      <Header />
+      <DefaultHeader />
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}
