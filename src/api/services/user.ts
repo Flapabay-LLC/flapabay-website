@@ -1,5 +1,6 @@
 import { api } from '../ingnoreme';
 import { User } from '../types';
+import { apiClient as api } from '../index';
 
 export const userService = {
   /**
@@ -33,5 +34,12 @@ export const userService = {
   }): Promise<User> => {
     const response = await api.post<User>('/user/complete-registration', data);
     return response.data;
+  },
+
+  /**
+   * Become a host
+   */
+  becomeHost: async (userId: string): Promise<void> => {
+    await api.post(`/host/signup`, { userId });
   }
 };

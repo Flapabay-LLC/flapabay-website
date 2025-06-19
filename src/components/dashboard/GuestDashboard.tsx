@@ -17,8 +17,11 @@ const GuestDashboard = () => {
   const { toast } = useToast();
   const { signOut, user } = useAuth();
   const { theme, toggleTheme } = useTheme();
+
+  console.log(user, 'dashboard user');
   
   const handleSwitchToHost = () => {
+    console.log('GuestDashboard: Switching to Host. Current user:', user);
     toast({
       title: "Switching to host mode",
       description: "Welcome to your hosting dashboard!",
@@ -27,6 +30,7 @@ const GuestDashboard = () => {
   };
   
   const handleLogout = async () => {
+    console.log('GuestDashboard: Logging out. Current user:', user);
     await signOut();
     toast({
       title: "Logged out successfully",

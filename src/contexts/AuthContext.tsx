@@ -4,6 +4,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { userAtom, setAuthAtom, clearAuthAtom } from '@/store/authStore';
 import { useToast } from '@/hooks/use-toast';
 import type { User } from '@/api/types/apiTypes';
+import { secureStorage } from '@/utils/secureStorage';
 import { authService } from '@/api/services/a avoid this file';
 import { 
   OtpRequest, 
@@ -52,10 +53,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Initialize user from localStorage on mount
   useEffect(() => {
     const initializeAuth = () => {
-      const storedUser = localStorage.getItem('flapabay_user_session');
+      const storedUser = secureStorage.getItem('flapabay_user_session');
+      console.log('AuthContext: Initializing auth. Stored user session:', storedUser);
       if (storedUser) {
         try {
           let userData = JSON.parse(storedUser);
+          console.log('AuthContext: Parsed user data:', userData);
           // Map to the User interface from authService
           userData = {
             id: userData.id || '',
@@ -68,10 +71,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           };
           setUser(userData);
         } catch (err) {
-          console.error('Failed to parse stored user data:', err);
+          console.error('AuthContext: Failed to parse stored user data, clearing auth:', err);
           clearAuth();
         }
       } else {
+        console.log('AuthContext: No stored user session found, setting user to null.');
         setUser(null);
       }
     };
@@ -151,6 +155,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     }
   };
+
+  const switchRole = useCallback(() => {
+    setUser(prevUser => {
+      if (!prevUser) return null;
+
+      const newRole = prevUser.role === 'guest' ? 'host' : 'guest';
+      const updatedUser = { ...prevUser, role: newRole };
+      secureStorage.setItem('flapabay_user_session', JSON.stringify(updatedUser));
+      toast({
+        title: "Role Switched",
+        description: `You are now a ${newRole}.`,
+      });
+      return updatedUser;
+    });
+  }, [setUser, toast]);
 
   const verifyOtp = async (data: VerifyOtpRequest): Promise<[AuthResponse | null, ApiError | null]> => {
     setLoading(true);
@@ -371,4 +390,4 @@ export function useAuth() {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-} 
+}

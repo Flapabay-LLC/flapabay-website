@@ -34,6 +34,7 @@ const HostDashboard = () => {
   const { theme, toggleTheme } = useTheme();
   
   const handleSwitchToGuest = () => {
+    console.log('HostDashboard: Switching to Guest. Current user:', user);
     toast({
       title: "Switching to guest mode",
       description: "Welcome to your traveler dashboard!",
@@ -42,6 +43,7 @@ const HostDashboard = () => {
   };
   
   const handleLogout = async () => {
+    console.log('HostDashboard: Logging out. Current user:', user);
     await signOut();
     toast({
       title: "Logged out successfully",

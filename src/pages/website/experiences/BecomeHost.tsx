@@ -11,6 +11,10 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from '@/hooks/useAuth';
+import api from '@/api/core/api';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+
 
 const BecomeHost = () => {
   // State for earnings calculator
@@ -26,6 +30,41 @@ const BecomeHost = () => {
   });
   const [isCalculating, setIsCalculating] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleBecomeHost = async () => {
+    if (!user || !user.id) {
+      toast({
+        title: "Error",
+        description: "User not logged in or user ID not available.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const response = await api.post('/host/signup', {
+        user_id: user.id,
+      });
+
+      const data = response.data;
+      console.log('Host signup successful:', data);
+      toast({
+        title: "Success",
+        description: "You are now a host! Redirecting to dashboard.",
+      });
+      navigate('/dashboard/host');
+    } catch (error) {
+      console.error('Error signing up as host:', error);
+      toast({
+        title: "Error",
+        description: `Failed to become a host: ${error.message}`,
+        variant: "destructive",
+      });
+    }
+  };
+
 
   // Location-based pricing data (simplified for demo)
   const locationPricing = {
@@ -123,6 +162,7 @@ const BecomeHost = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4 pt-6 md:pt-0">
                 <Button
+                  onClick={handleBecomeHost}
                   size="lg"
                   className="bg-flapabay-yellow bg-[#ffc500] text-white text-lg hover:bg-flapabay-yellow/90"
                 >

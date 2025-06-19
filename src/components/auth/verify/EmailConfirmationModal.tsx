@@ -3,6 +3,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { authService } from "@/api/services/a avoid this file";
 import left from "@/assets/left.png";
 import OtpInput from "react-otp-input";
+import { secureStorage } from "../../../utils/secureStorage";
 
 interface EmailConfirmationModalProps {
   onClose: () => void;
@@ -72,8 +73,8 @@ const EmailConfirmationModal: React.FC<EmailConfirmationModalProps> = ({ onClose
       }
       
       if(loginResponse){
-        localStorage.setItem('auth_token', loginResponse.token);
-        localStorage.setItem('user_data', JSON.stringify(loginResponse.user));
+        secureStorage.setItem('auth_token', loginResponse.token);
+        secureStorage.setItem('flapabay_user_session', JSON.stringify(loginResponse.user));
       }
   
       onClose();

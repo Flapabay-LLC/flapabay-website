@@ -4,6 +4,7 @@ import { atom, useAtom } from "jotai";
 import { userAtom } from "@/store/authStore";
 import { translationsAtom } from "@/store/languageStore";
 import { currencyService, type Currency, type Language } from "@/api/services/currency";
+import { secureStorage } from '../../../utils/secureStorage';
 import { useToast } from "@/hooks/use-toast";
 import { AxiosResponse } from "axios";
 
@@ -84,7 +85,7 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
   };
 
   const handleCurrencySelect = async (currencyCode: string) => {
-    const user_data = JSON.parse(localStorage.getItem('user_data') || '{}');
+    const user_data = JSON.parse(secureStorage.getItem('flapabay_user_session') || '{}');
     const [response, error] = await currencyService.setUserCurrency(currencyCode, user_data?.id);
     
     if (error) {
@@ -106,7 +107,7 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
   };
 
   const handleLanguageSelect = async (languageCode: string) => {
-    const user_data = JSON.parse(localStorage.getItem('user_data') || '{}');
+    const user_data = JSON.parse(secureStorage.getItem('flapabay_user_session') || '{}');
     const [response, error] = await currencyService.setUserLanguage(languageCode, user_data?.id);
     
     if (error) {

@@ -2,6 +2,7 @@ import { Heart } from "iconsax-react";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { secureStorage } from '../../../src/utils/secureStorage';
 
 const FeaturedListings = ({ cities }) => {
   const [properties, setProperties] = useState([]);
@@ -11,7 +12,7 @@ const FeaturedListings = ({ cities }) => {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(secureStorage.getItem("flapabay_user_session"));
       const token = user?.token;
 
       try {

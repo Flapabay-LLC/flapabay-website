@@ -1,7 +1,8 @@
 // DEPRECATED: Use modular store files (authStore.ts, bookingStore.ts, modalStore.ts, languageStore.ts) instead.
 // This file is kept for reference during migration and will be removed.
 
-import { atom } from "jotai";
+import { atom } from 'jotai';
+import { secureStorage } from '../utils/secureStorage';
 
 // Atom to hold the "mode" (Hosting or Travelling)
 export const modeAtom = atom(true); // true represents Hosting, false represents Travelling
@@ -20,7 +21,7 @@ interface User {
 }
 
 // Initialize user from localStorage if available
-const storedUser = typeof window !== "undefined" ? localStorage.getItem("user_data") : null;
+const storedUser = typeof window !== "undefined" ? secureStorage.getItem("flapabay_user_session") : null;
 const initialUser = storedUser ? JSON.parse(storedUser) : null;
 
 export const userAtom = atom<User | null>(initialUser);

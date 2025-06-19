@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import CurrencyModal from "../home/home-v1/CurrencyModal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { secureStorage } from '../../utils/secureStorage';
 import LoginSignupModal from "@/components/auth/login-signup-modal";
 import MainMenu from "@/components/common/MainMenu";
 import { RiGlobalLine } from "react-icons/ri";
@@ -23,14 +24,14 @@ const Header: React.FC = () => {
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = secureStorage.getItem("flapabay_user_session");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
   }, [setUser]);
 
   const handleLogout = (): void => {
-    localStorage.removeItem("user");
+    secureStorage.removeItem("flapabay_user_session");
     setUser(null);
   };
 
@@ -233,4 +234,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header; 
+export default Header;

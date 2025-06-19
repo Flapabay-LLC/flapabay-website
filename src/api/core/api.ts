@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { secureStorage } from '../../utils/secureStorage';
 import { toast } from 'react-toastify';
 
 interface ErrorResponse {
@@ -40,7 +41,7 @@ api.interceptors.request.use(
     });
 
     // Add auth token if available
-    const token = localStorage.getItem('auth_token');
+    const token = secureStorage.getItem('auth_token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -122,8 +123,8 @@ api.interceptors.response.use(
     switch (error.response.status) {
       case 401:
         // Token expired or invalid
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('flapabay_user_session');
+        secureStorage.removeItem('auth_token');
+secureStorage.removeItem('flapabay_user_session');
         // window.location.href = '/auth/login';
         break;
       case 403:
