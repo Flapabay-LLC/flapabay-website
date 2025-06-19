@@ -1,4 +1,5 @@
 import { apiClient } from '../config/axios';
+import { secureStorage } from '../../utils/secureStorage';
 import {
   AuthUser,
   Session,
@@ -53,7 +54,7 @@ export const authApi = {
    * Sign out
    */
   signOut: async (): Promise<void> => {
-    localStorage.removeItem('token');
+    secureStorage.removeItem('auth_token');
     return apiClient.post('/logout');
   },
 
@@ -98,4 +99,4 @@ export const authApi = {
   verifyEmail: async (token: string): Promise<void> => {
     return apiClient.post('/verify-email', { token });
   }
-}; 
+};

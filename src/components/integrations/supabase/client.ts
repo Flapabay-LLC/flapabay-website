@@ -70,10 +70,10 @@ const triggerAuthStateChange = (event: string, session: AuthSession | null) => {
   if (typeof window !== 'undefined') {
     if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
         if (session?.user) {
-            localStorage.setItem('flapabay-mock-user', JSON.stringify(session.user));
+            secureStorage.setItem('flapabay-mock-user', JSON.stringify(session.user));
         }
     } else if (event === 'SIGNED_OUT') {
-        localStorage.removeItem('flapabay-mock-user');
+        secureStorage.removeItem('flapabay-mock-user');
     }
   }
 };
@@ -383,7 +383,7 @@ if (typeof window !== 'undefined') {
             currentSession = { ...mockSessionInternal, user: currentUser! };
         } catch (e) {
             console.error("Failed to parse stored mock user during initial load", e);
-            localStorage.removeItem('flapabay-mock-user');
+            secureStorage.removeItem('flapabay-mock-user');
             currentUser = null;
             currentSession = null;
         }

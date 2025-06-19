@@ -74,7 +74,7 @@ const FinishSignupModal: React.FC<FinishSignupModalProps> = ({ onClose, email })
         picture: undefined, // Optional field
       };
 
-      localStorage.setItem("user_data", JSON.stringify(userData));
+      secureStorage.setItem("flapabay_user_session", JSON.stringify(userData));
       setUser(userData); 
 
       // Call Email OTP API

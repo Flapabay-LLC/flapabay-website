@@ -1,6 +1,8 @@
 import { Gallery, Item } from "react-photoswipe-gallery";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { secureStorage } from '../../utils/secureStorage';
 
 import AllReviews from "../property/reviews";
 import ContactWithAgent from "../property/property-single-style/sidebar/ContactWithAgent";
@@ -238,7 +240,7 @@ const BookingPage = () => {
     }
 
     const fetchReviews = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(secureStorage.getItem("flapabay_user_session"));
       const token = user?.token;
 
       if (!token) {

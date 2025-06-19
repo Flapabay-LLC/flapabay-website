@@ -76,8 +76,8 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, phone, c
         return;
       }
       if(loginResponse){
-        localStorage.setItem('auth_token', loginResponse.token);
-        localStorage.setItem('user_data', JSON.stringify(loginResponse.user));
+        secureStorage.setItem('auth_token', loginResponse.token);
+        secureStorage.setItem('flapabay_user_session', JSON.stringify(loginResponse.user));
       }
 
       onClose();

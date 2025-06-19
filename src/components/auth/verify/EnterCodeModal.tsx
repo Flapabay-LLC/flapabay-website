@@ -41,8 +41,8 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose, email }) => {
 
       // Store in localStorage if remember me is checked
       if (rememberMe) {
-        localStorage.setItem('auth_token', data.token);
-        localStorage.setItem('user_data', JSON.stringify(data.user));
+        secureStorage.setItem('auth_token', data.token);
+        secureStorage.setItem('flapabay_user_session', JSON.stringify(data.user));
       } else {
         sessionStorage.setItem('auth_token', data.token);
         sessionStorage.setItem('user_data', JSON.stringify(data.user));

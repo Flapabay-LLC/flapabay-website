@@ -8,12 +8,12 @@ export function useAuth() {
 
   const login = (userData: any) => {
     setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+    secureStorage.setItem("flapabay_user_session", JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("user");
+    secureStorage.removeItem("flapabay_user_session");
   };
 
   return {
@@ -22,4 +22,4 @@ export function useAuth() {
     login,
     logout,
   };
-} 
+}
